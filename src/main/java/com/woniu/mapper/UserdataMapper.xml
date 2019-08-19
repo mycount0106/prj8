@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.mapper.UserdataMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.entity.Userdata">
+    <id column="dataid" jdbcType="INTEGER" property="dataid" />
+    <result column="adress" jdbcType="VARCHAR" property="adress" />
+    <result column="photo_one" jdbcType="VARCHAR" property="photoOne" />
+    <result column="photo_two" jdbcType="VARCHAR" property="photoTwo" />
+    <result column="cardid" jdbcType="VARCHAR" property="cardid" />
+    <result column="cause" jdbcType="VARCHAR" property="cause" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="income" jdbcType="DOUBLE" property="income" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    dataid, adress, photo_one, photo_two, cardid, cause, remark, company, position, income, 
+    uid, age, sex
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.entity.UserdataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from userdata
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userdata
+    where dataid = #{dataid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userdata
+    where dataid = #{dataid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.entity.UserdataExample">
+    delete from userdata
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.entity.Userdata">
+    insert into userdata (dataid, adress, photo_one, 
+      photo_two, cardid, cause, 
+      remark, company, position, 
+      income, uid, age, sex
+      )
+    values (#{dataid,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}, #{photoOne,jdbcType=VARCHAR}, 
+      #{photoTwo,jdbcType=VARCHAR}, #{cardid,jdbcType=VARCHAR}, #{cause,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{income,jdbcType=DOUBLE}, #{uid,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.entity.Userdata">
+    insert into userdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dataid != null">
+        dataid,
+      </if>
+      <if test="adress != null">
+        adress,
+      </if>
+      <if test="photoOne != null">
+        photo_one,
+      </if>
+      <if test="photoTwo != null">
+        photo_two,
+      </if>
+      <if test="cardid != null">
+        cardid,
+      </if>
+      <if test="cause != null">
+        cause,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dataid != null">
+        #{dataid,jdbcType=INTEGER},
+      </if>
+      <if test="adress != null">
+        #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="photoOne != null">
+        #{photoOne,jdbcType=VARCHAR},
+      </if>
+      <if test="photoTwo != null">
+        #{photoTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardid != null">
+        #{cardid,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null">
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.entity.UserdataExample" resultType="java.lang.Long">
+    select count(*) from userdata
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update userdata
+    <set>
+      <if test="record.dataid != null">
+        dataid = #{record.dataid,jdbcType=INTEGER},
+      </if>
+      <if test="record.adress != null">
+        adress = #{record.adress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoOne != null">
+        photo_one = #{record.photoOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoTwo != null">
+        photo_two = #{record.photoTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardid != null">
+        cardid = #{record.cardid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cause != null">
+        cause = #{record.cause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null">
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.income != null">
+        income = #{record.income,jdbcType=DOUBLE},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update userdata
+    set dataid = #{record.dataid,jdbcType=INTEGER},
+      adress = #{record.adress,jdbcType=VARCHAR},
+      photo_one = #{record.photoOne,jdbcType=VARCHAR},
+      photo_two = #{record.photoTwo,jdbcType=VARCHAR},
+      cardid = #{record.cardid,jdbcType=VARCHAR},
+      cause = #{record.cause,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      company = #{record.company,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      income = #{record.income,jdbcType=DOUBLE},
+      uid = #{record.uid,jdbcType=INTEGER},
+      age = #{record.age,jdbcType=INTEGER},
+      sex = #{record.sex,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Userdata">
+    update userdata
+    <set>
+      <if test="adress != null">
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="photoOne != null">
+        photo_one = #{photoOne,jdbcType=VARCHAR},
+      </if>
+      <if test="photoTwo != null">
+        photo_two = #{photoTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardid != null">
+        cardid = #{cardid,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null">
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        income = #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dataid = #{dataid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Userdata">
+    update userdata
+    set adress = #{adress,jdbcType=VARCHAR},
+      photo_one = #{photoOne,jdbcType=VARCHAR},
+      photo_two = #{photoTwo,jdbcType=VARCHAR},
+      cardid = #{cardid,jdbcType=VARCHAR},
+      cause = #{cause,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      income = #{income,jdbcType=DOUBLE},
+      uid = #{uid,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR}
+    where dataid = #{dataid,jdbcType=INTEGER}
+  </update>
+</mapper>

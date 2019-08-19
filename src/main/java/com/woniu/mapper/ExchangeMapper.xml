@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.mapper.ExchangeMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.entity.Exchange">
+    <id column="exchangeid" jdbcType="INTEGER" property="exchangeid" />
+    <result column="extime" jdbcType="DATE" property="extime" />
+    <result column="examount" jdbcType="INTEGER" property="examount" />
+    <result column="ticketid" jdbcType="INTEGER" property="ticketid" />
+    <result column="creditid" jdbcType="INTEGER" property="creditid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    exchangeid, extime, examount, ticketid, creditid
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.entity.ExchangeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exchange
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exchange
+    where exchangeid = #{exchangeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exchange
+    where exchangeid = #{exchangeid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.entity.ExchangeExample">
+    delete from exchange
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.entity.Exchange">
+    insert into exchange (exchangeid, extime, examount, 
+      ticketid, creditid)
+    values (#{exchangeid,jdbcType=INTEGER}, #{extime,jdbcType=DATE}, #{examount,jdbcType=INTEGER}, 
+      #{ticketid,jdbcType=INTEGER}, #{creditid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.entity.Exchange">
+    insert into exchange
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="exchangeid != null">
+        exchangeid,
+      </if>
+      <if test="extime != null">
+        extime,
+      </if>
+      <if test="examount != null">
+        examount,
+      </if>
+      <if test="ticketid != null">
+        ticketid,
+      </if>
+      <if test="creditid != null">
+        creditid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="exchangeid != null">
+        #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="extime != null">
+        #{extime,jdbcType=DATE},
+      </if>
+      <if test="examount != null">
+        #{examount,jdbcType=INTEGER},
+      </if>
+      <if test="ticketid != null">
+        #{ticketid,jdbcType=INTEGER},
+      </if>
+      <if test="creditid != null">
+        #{creditid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.entity.ExchangeExample" resultType="java.lang.Long">
+    select count(*) from exchange
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update exchange
+    <set>
+      <if test="record.exchangeid != null">
+        exchangeid = #{record.exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.extime != null">
+        extime = #{record.extime,jdbcType=DATE},
+      </if>
+      <if test="record.examount != null">
+        examount = #{record.examount,jdbcType=INTEGER},
+      </if>
+      <if test="record.ticketid != null">
+        ticketid = #{record.ticketid,jdbcType=INTEGER},
+      </if>
+      <if test="record.creditid != null">
+        creditid = #{record.creditid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update exchange
+    set exchangeid = #{record.exchangeid,jdbcType=INTEGER},
+      extime = #{record.extime,jdbcType=DATE},
+      examount = #{record.examount,jdbcType=INTEGER},
+      ticketid = #{record.ticketid,jdbcType=INTEGER},
+      creditid = #{record.creditid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Exchange">
+    update exchange
+    <set>
+      <if test="extime != null">
+        extime = #{extime,jdbcType=DATE},
+      </if>
+      <if test="examount != null">
+        examount = #{examount,jdbcType=INTEGER},
+      </if>
+      <if test="ticketid != null">
+        ticketid = #{ticketid,jdbcType=INTEGER},
+      </if>
+      <if test="creditid != null">
+        creditid = #{creditid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where exchangeid = #{exchangeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Exchange">
+    update exchange
+    set extime = #{extime,jdbcType=DATE},
+      examount = #{examount,jdbcType=INTEGER},
+      ticketid = #{ticketid,jdbcType=INTEGER},
+      creditid = #{creditid,jdbcType=INTEGER}
+    where exchangeid = #{exchangeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.mapper.UserticketMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.entity.Userticket">
+    <id column="userticketid" jdbcType="INTEGER" property="userticketid" />
+    <result column="ticketname" jdbcType="VARCHAR" property="ticketname" />
+    <result column="ticketrate" jdbcType="DOUBLE" property="ticketrate" />
+    <result column="validdate" jdbcType="DATE" property="validdate" />
+    <result column="walletid" jdbcType="INTEGER" property="walletid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    userticketid, ticketname, ticketrate, validdate, walletid
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.entity.UserticketExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from userticket
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userticket
+    where userticketid = #{userticketid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userticket
+    where userticketid = #{userticketid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.entity.UserticketExample">
+    delete from userticket
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.entity.Userticket">
+    insert into userticket (userticketid, ticketname, ticketrate, 
+      validdate, walletid)
+    values (#{userticketid,jdbcType=INTEGER}, #{ticketname,jdbcType=VARCHAR}, #{ticketrate,jdbcType=DOUBLE}, 
+      #{validdate,jdbcType=DATE}, #{walletid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.entity.Userticket">
+    insert into userticket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userticketid != null">
+        userticketid,
+      </if>
+      <if test="ticketname != null">
+        ticketname,
+      </if>
+      <if test="ticketrate != null">
+        ticketrate,
+      </if>
+      <if test="validdate != null">
+        validdate,
+      </if>
+      <if test="walletid != null">
+        walletid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userticketid != null">
+        #{userticketid,jdbcType=INTEGER},
+      </if>
+      <if test="ticketname != null">
+        #{ticketname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketrate != null">
+        #{ticketrate,jdbcType=DOUBLE},
+      </if>
+      <if test="validdate != null">
+        #{validdate,jdbcType=DATE},
+      </if>
+      <if test="walletid != null">
+        #{walletid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.entity.UserticketExample" resultType="java.lang.Long">
+    select count(*) from userticket
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update userticket
+    <set>
+      <if test="record.userticketid != null">
+        userticketid = #{record.userticketid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ticketname != null">
+        ticketname = #{record.ticketname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ticketrate != null">
+        ticketrate = #{record.ticketrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.validdate != null">
+        validdate = #{record.validdate,jdbcType=DATE},
+      </if>
+      <if test="record.walletid != null">
+        walletid = #{record.walletid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update userticket
+    set userticketid = #{record.userticketid,jdbcType=INTEGER},
+      ticketname = #{record.ticketname,jdbcType=VARCHAR},
+      ticketrate = #{record.ticketrate,jdbcType=DOUBLE},
+      validdate = #{record.validdate,jdbcType=DATE},
+      walletid = #{record.walletid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Userticket">
+    update userticket
+    <set>
+      <if test="ticketname != null">
+        ticketname = #{ticketname,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketrate != null">
+        ticketrate = #{ticketrate,jdbcType=DOUBLE},
+      </if>
+      <if test="validdate != null">
+        validdate = #{validdate,jdbcType=DATE},
+      </if>
+      <if test="walletid != null">
+        walletid = #{walletid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where userticketid = #{userticketid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Userticket">
+    update userticket
+    set ticketname = #{ticketname,jdbcType=VARCHAR},
+      ticketrate = #{ticketrate,jdbcType=DOUBLE},
+      validdate = #{validdate,jdbcType=DATE},
+      walletid = #{walletid,jdbcType=INTEGER}
+    where userticketid = #{userticketid,jdbcType=INTEGER}
+  </update>
+</mapper>

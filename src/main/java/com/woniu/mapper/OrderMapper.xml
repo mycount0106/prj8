@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.entity.Order">
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="oname" jdbcType="VARCHAR" property="oname" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="deadline" jdbcType="INTEGER" property="deadline" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="otime" jdbcType="DATE" property="otime" />
+    <result column="walletid" jdbcType="INTEGER" property="walletid" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="moneyonmonth" jdbcType="DOUBLE" property="moneyonmonth" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    oid, oname, money, deadline, rate, otime, walletid, status, moneyonmonth
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.entity.OrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.entity.OrderExample">
+    delete from order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.entity.Order">
+    insert into order (oid, oname, money, 
+      deadline, rate, otime, 
+      walletid, status, moneyonmonth
+      )
+    values (#{oid,jdbcType=INTEGER}, #{oname,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
+      #{deadline,jdbcType=INTEGER}, #{rate,jdbcType=DOUBLE}, #{otime,jdbcType=DATE}, 
+      #{walletid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{moneyonmonth,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oid != null">
+        oid,
+      </if>
+      <if test="oname != null">
+        oname,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="otime != null">
+        otime,
+      </if>
+      <if test="walletid != null">
+        walletid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="moneyonmonth != null">
+        moneyonmonth,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oid != null">
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="oname != null">
+        #{oname,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="otime != null">
+        #{otime,jdbcType=DATE},
+      </if>
+      <if test="walletid != null">
+        #{walletid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="moneyonmonth != null">
+        #{moneyonmonth,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.entity.OrderExample" resultType="java.lang.Long">
+    select count(*) from order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order
+    <set>
+      <if test="record.oid != null">
+        oid = #{record.oid,jdbcType=INTEGER},
+      </if>
+      <if test="record.oname != null">
+        oname = #{record.oname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=DOUBLE},
+      </if>
+      <if test="record.deadline != null">
+        deadline = #{record.deadline,jdbcType=INTEGER},
+      </if>
+      <if test="record.rate != null">
+        rate = #{record.rate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otime != null">
+        otime = #{record.otime,jdbcType=DATE},
+      </if>
+      <if test="record.walletid != null">
+        walletid = #{record.walletid,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.moneyonmonth != null">
+        moneyonmonth = #{record.moneyonmonth,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order
+    set oid = #{record.oid,jdbcType=INTEGER},
+      oname = #{record.oname,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DOUBLE},
+      deadline = #{record.deadline,jdbcType=INTEGER},
+      rate = #{record.rate,jdbcType=DOUBLE},
+      otime = #{record.otime,jdbcType=DATE},
+      walletid = #{record.walletid,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      moneyonmonth = #{record.moneyonmonth,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Order">
+    update order
+    <set>
+      <if test="oname != null">
+        oname = #{oname,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="otime != null">
+        otime = #{otime,jdbcType=DATE},
+      </if>
+      <if test="walletid != null">
+        walletid = #{walletid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="moneyonmonth != null">
+        moneyonmonth = #{moneyonmonth,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Order">
+    update order
+    set oname = #{oname,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      deadline = #{deadline,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=DOUBLE},
+      otime = #{otime,jdbcType=DATE},
+      walletid = #{walletid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      moneyonmonth = #{moneyonmonth,jdbcType=DOUBLE}
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+</mapper>
