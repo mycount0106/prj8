@@ -442,63 +442,63 @@ public class RepaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoanidIsNull() {
-            addCriterion("loanid is null");
+        public Criteria andBorrowidIsNull() {
+            addCriterion("borrowid is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidIsNotNull() {
-            addCriterion("loanid is not null");
+        public Criteria andBorrowidIsNotNull() {
+            addCriterion("borrowid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidEqualTo(Integer value) {
-            addCriterion("loanid =", value, "loanid");
+        public Criteria andBorrowidEqualTo(Integer value) {
+            addCriterion("borrowid =", value, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidNotEqualTo(Integer value) {
-            addCriterion("loanid <>", value, "loanid");
+        public Criteria andBorrowidNotEqualTo(Integer value) {
+            addCriterion("borrowid <>", value, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidGreaterThan(Integer value) {
-            addCriterion("loanid >", value, "loanid");
+        public Criteria andBorrowidGreaterThan(Integer value) {
+            addCriterion("borrowid >", value, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("loanid >=", value, "loanid");
+        public Criteria andBorrowidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("borrowid >=", value, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidLessThan(Integer value) {
-            addCriterion("loanid <", value, "loanid");
+        public Criteria andBorrowidLessThan(Integer value) {
+            addCriterion("borrowid <", value, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidLessThanOrEqualTo(Integer value) {
-            addCriterion("loanid <=", value, "loanid");
+        public Criteria andBorrowidLessThanOrEqualTo(Integer value) {
+            addCriterion("borrowid <=", value, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidIn(List<Integer> values) {
-            addCriterion("loanid in", values, "loanid");
+        public Criteria andBorrowidIn(List<Integer> values) {
+            addCriterion("borrowid in", values, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidNotIn(List<Integer> values) {
-            addCriterion("loanid not in", values, "loanid");
+        public Criteria andBorrowidNotIn(List<Integer> values) {
+            addCriterion("borrowid not in", values, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidBetween(Integer value1, Integer value2) {
-            addCriterion("loanid between", value1, value2, "loanid");
+        public Criteria andBorrowidBetween(Integer value1, Integer value2) {
+            addCriterion("borrowid between", value1, value2, "borrowid");
             return (Criteria) this;
         }
 
-        public Criteria andLoanidNotBetween(Integer value1, Integer value2) {
-            addCriterion("loanid not between", value1, value2, "loanid");
+        public Criteria andBorrowidNotBetween(Integer value1, Integer value2) {
+            addCriterion("borrowid not between", value1, value2, "borrowid");
             return (Criteria) this;
         }
 

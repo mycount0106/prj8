@@ -9,21 +9,15 @@ public class Loan {
 
     private Double money;
 
-    private Integer deadline;
-
-    private Double moneyonmonth;
-
     private Date loantime;
+
+    private String myaccount;
+
+    private String serial;
 
     private Integer walletid;
 
     private Integer status;
-
-    private Double rate;
-
-    private Double totalmoney;
-
-    private Double residuemoney;
 
     public Integer getLoanid() {
         return loanid;
@@ -49,28 +43,28 @@ public class Loan {
         this.money = money;
     }
 
-    public Integer getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Integer deadline) {
-        this.deadline = deadline;
-    }
-
-    public Double getMoneyonmonth() {
-        return moneyonmonth;
-    }
-
-    public void setMoneyonmonth(Double moneyonmonth) {
-        this.moneyonmonth = moneyonmonth;
-    }
-
     public Date getLoantime() {
         return loantime;
     }
 
     public void setLoantime(Date loantime) {
         this.loantime = loantime;
+    }
+
+    public String getMyaccount() {
+        return myaccount;
+    }
+
+    public void setMyaccount(String myaccount) {
+        this.myaccount = myaccount;
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
     }
 
     public Integer getWalletid() {
@@ -87,29 +81,5 @@ public class Loan {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Double getRate() {
-        return rate;
-    }
-
-    public void setRate(Double rate) {
-        this.rate = rate;
-    }
-
-    public Double getTotalmoney() {
-        return totalmoney;
-    }
-
-    public void setTotalmoney(Double totalmoney) {
-        this.totalmoney = totalmoney;
-    }
-
-    public Double getResiduemoney() {
-        return residuemoney;
-    }
-
-    public void setResiduemoney(Double residuemoney) {
-        this.residuemoney = residuemoney;
     }
 }

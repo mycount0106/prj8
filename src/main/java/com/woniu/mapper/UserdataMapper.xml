@@ -3,6 +3,9 @@
 <mapper namespace="com.woniu.mapper.UserdataMapper">
   <resultMap id="BaseResultMap" type="com.woniu.entity.Userdata">
     <id column="dataid" jdbcType="INTEGER" property="dataid" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
     <result column="adress" jdbcType="VARCHAR" property="adress" />
     <result column="photo_one" jdbcType="VARCHAR" property="photoOne" />
     <result column="photo_two" jdbcType="VARCHAR" property="photoTwo" />
@@ -13,8 +16,6 @@
     <result column="position" jdbcType="VARCHAR" property="position" />
     <result column="income" jdbcType="DOUBLE" property="income" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    dataid, adress, photo_one, photo_two, cardid, cause, remark, company, position, income, 
-    uid, age, sex
+    dataid, uname, sex, age, adress, photo_one, photo_two, cardid, cause, remark, company, 
+    position, income, uid
   </sql>
   <select id="selectByExample" parameterType="com.woniu.entity.UserdataExample" resultMap="BaseResultMap">
     select
@@ -109,22 +110,31 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.entity.Userdata">
-    insert into userdata (dataid, adress, photo_one, 
+    insert into userdata (dataid, uname, sex, 
+      age, adress, photo_one, 
       photo_two, cardid, cause, 
       remark, company, position, 
-      income, uid, age, sex
-      )
-    values (#{dataid,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}, #{photoOne,jdbcType=VARCHAR}, 
+      income, uid)
+    values (#{dataid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{adress,jdbcType=VARCHAR}, #{photoOne,jdbcType=VARCHAR}, 
       #{photoTwo,jdbcType=VARCHAR}, #{cardid,jdbcType=VARCHAR}, #{cause,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
-      #{income,jdbcType=DOUBLE}, #{uid,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}
-      )
+      #{income,jdbcType=DOUBLE}, #{uid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.entity.Userdata">
     insert into userdata
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dataid != null">
         dataid,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
       </if>
       <if test="adress != null">
         adress,
@@ -156,16 +166,19 @@
       <if test="uid != null">
         uid,
       </if>
-      <if test="age != null">
-        age,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="dataid != null">
         #{dataid,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
       </if>
       <if test="adress != null">
         #{adress,jdbcType=VARCHAR},
@@ -197,12 +210,6 @@
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.woniu.entity.UserdataExample" resultType="java.lang.Long">
@@ -216,6 +223,15 @@
     <set>
       <if test="record.dataid != null">
         dataid = #{record.dataid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uname != null">
+        uname = #{record.uname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
       </if>
       <if test="record.adress != null">
         adress = #{record.adress,jdbcType=VARCHAR},
@@ -247,12 +263,6 @@
       <if test="record.uid != null">
         uid = #{record.uid,jdbcType=INTEGER},
       </if>
-      <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
-      </if>
-      <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -261,6 +271,9 @@
   <update id="updateByExample" parameterType="map">
     update userdata
     set dataid = #{record.dataid,jdbcType=INTEGER},
+      uname = #{record.uname,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
       adress = #{record.adress,jdbcType=VARCHAR},
       photo_one = #{record.photoOne,jdbcType=VARCHAR},
       photo_two = #{record.photoTwo,jdbcType=VARCHAR},
@@ -270,9 +283,7 @@
       company = #{record.company,jdbcType=VARCHAR},
       position = #{record.position,jdbcType=VARCHAR},
       income = #{record.income,jdbcType=DOUBLE},
-      uid = #{record.uid,jdbcType=INTEGER},
-      age = #{record.age,jdbcType=INTEGER},
-      sex = #{record.sex,jdbcType=VARCHAR}
+      uid = #{record.uid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -280,6 +291,15 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Userdata">
     update userdata
     <set>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
       <if test="adress != null">
         adress = #{adress,jdbcType=VARCHAR},
       </if>
@@ -310,18 +330,15 @@
       <if test="uid != null">
         uid = #{uid,jdbcType=INTEGER},
       </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=VARCHAR},
-      </if>
     </set>
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Userdata">
     update userdata
-    set adress = #{adress,jdbcType=VARCHAR},
+    set uname = #{uname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      adress = #{adress,jdbcType=VARCHAR},
       photo_one = #{photoOne,jdbcType=VARCHAR},
       photo_two = #{photoTwo,jdbcType=VARCHAR},
       cardid = #{cardid,jdbcType=VARCHAR},
@@ -330,9 +347,7 @@
       company = #{company,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},
       income = #{income,jdbcType=DOUBLE},
-      uid = #{uid,jdbcType=INTEGER},
-      age = #{age,jdbcType=INTEGER},
-      sex = #{sex,jdbcType=VARCHAR}
+      uid = #{uid,jdbcType=INTEGER}
     where dataid = #{dataid,jdbcType=INTEGER}
   </update>
 </mapper>

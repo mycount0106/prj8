@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.woniu.mapper.LoanMapper">
-  <resultMap id="BaseResultMap" type="com.woniu.entity.Loan">
-    <id column="loanid" jdbcType="INTEGER" property="loanid" />
+<mapper namespace="com.woniu.mapper.BorrowMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.entity.Borrow">
+    <id column="borrowid" jdbcType="INTEGER" property="borrowid" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="money" jdbcType="DOUBLE" property="money" />
-    <result column="loantime" jdbcType="DATE" property="loantime" />
-    <result column="myaccount" jdbcType="VARCHAR" property="myaccount" />
-    <result column="serial" jdbcType="VARCHAR" property="serial" />
+    <result column="deadline" jdbcType="INTEGER" property="deadline" />
+    <result column="moneyOnmonth" jdbcType="DOUBLE" property="moneyonmonth" />
+    <result column="borrowidime" jdbcType="DATE" property="borrowidime" />
     <result column="walletid" jdbcType="INTEGER" property="walletid" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="totalmoney" jdbcType="DOUBLE" property="totalmoney" />
+    <result column="residuemoney" jdbcType="DOUBLE" property="residuemoney" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,15 +73,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    loanid, account, money, loantime, myaccount, serial, walletid, status
+    borrowid, account, money, deadline, moneyOnmonth, borrowidime, walletid, status, 
+    rate, totalmoney, residuemoney
   </sql>
-  <select id="selectByExample" parameterType="com.woniu.entity.LoanExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.woniu.entity.BorrowExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from loan
+    from borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,32 +93,34 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from loan
-    where loanid = #{loanid,jdbcType=INTEGER}
+    from borrow
+    where borrowid = #{borrowid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from loan
-    where loanid = #{loanid,jdbcType=INTEGER}
+    delete from borrow
+    where borrowid = #{borrowid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.woniu.entity.LoanExample">
-    delete from loan
+  <delete id="deleteByExample" parameterType="com.woniu.entity.BorrowExample">
+    delete from borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.entity.Loan">
-    insert into loan (loanid, account, money, 
-      loantime, myaccount, serial, 
-      walletid, status)
-    values (#{loanid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
-      #{loantime,jdbcType=DATE}, #{myaccount,jdbcType=VARCHAR}, #{serial,jdbcType=VARCHAR}, 
-      #{walletid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.woniu.entity.Borrow">
+    insert into borrow (borrowid, account, money, 
+      deadline, moneyOnmonth, borrowidime, 
+      walletid, status, rate, 
+      totalmoney, residuemoney)
+    values (#{borrowid,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
+      #{deadline,jdbcType=INTEGER}, #{moneyonmonth,jdbcType=DOUBLE}, #{borrowidime,jdbcType=DATE}, 
+      #{walletid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{rate,jdbcType=DOUBLE}, 
+      #{totalmoney,jdbcType=DOUBLE}, #{residuemoney,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.entity.Loan">
-    insert into loan
+  <insert id="insertSelective" parameterType="com.woniu.entity.Borrow">
+    insert into borrow
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="loanid != null">
-        loanid,
+      <if test="borrowid != null">
+        borrowid,
       </if>
       <if test="account != null">
         account,
@@ -122,14 +128,14 @@
       <if test="money != null">
         money,
       </if>
-      <if test="loantime != null">
-        loantime,
+      <if test="deadline != null">
+        deadline,
       </if>
-      <if test="myaccount != null">
-        myaccount,
+      <if test="moneyonmonth != null">
+        moneyOnmonth,
       </if>
-      <if test="serial != null">
-        serial,
+      <if test="borrowidime != null">
+        borrowidime,
       </if>
       <if test="walletid != null">
         walletid,
@@ -137,10 +143,19 @@
       <if test="status != null">
         status,
       </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="totalmoney != null">
+        totalmoney,
+      </if>
+      <if test="residuemoney != null">
+        residuemoney,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="loanid != null">
-        #{loanid,jdbcType=INTEGER},
+      <if test="borrowid != null">
+        #{borrowid,jdbcType=INTEGER},
       </if>
       <if test="account != null">
         #{account,jdbcType=VARCHAR},
@@ -148,14 +163,14 @@
       <if test="money != null">
         #{money,jdbcType=DOUBLE},
       </if>
-      <if test="loantime != null">
-        #{loantime,jdbcType=DATE},
+      <if test="deadline != null">
+        #{deadline,jdbcType=INTEGER},
       </if>
-      <if test="myaccount != null">
-        #{myaccount,jdbcType=VARCHAR},
+      <if test="moneyonmonth != null">
+        #{moneyonmonth,jdbcType=DOUBLE},
       </if>
-      <if test="serial != null">
-        #{serial,jdbcType=VARCHAR},
+      <if test="borrowidime != null">
+        #{borrowidime,jdbcType=DATE},
       </if>
       <if test="walletid != null">
         #{walletid,jdbcType=INTEGER},
@@ -163,19 +178,28 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="totalmoney != null">
+        #{totalmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="residuemoney != null">
+        #{residuemoney,jdbcType=DOUBLE},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.woniu.entity.LoanExample" resultType="java.lang.Long">
-    select count(*) from loan
+  <select id="countByExample" parameterType="com.woniu.entity.BorrowExample" resultType="java.lang.Long">
+    select count(*) from borrow
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update loan
+    update borrow
     <set>
-      <if test="record.loanid != null">
-        loanid = #{record.loanid,jdbcType=INTEGER},
+      <if test="record.borrowid != null">
+        borrowid = #{record.borrowid,jdbcType=INTEGER},
       </if>
       <if test="record.account != null">
         account = #{record.account,jdbcType=VARCHAR},
@@ -183,14 +207,14 @@
       <if test="record.money != null">
         money = #{record.money,jdbcType=DOUBLE},
       </if>
-      <if test="record.loantime != null">
-        loantime = #{record.loantime,jdbcType=DATE},
+      <if test="record.deadline != null">
+        deadline = #{record.deadline,jdbcType=INTEGER},
       </if>
-      <if test="record.myaccount != null">
-        myaccount = #{record.myaccount,jdbcType=VARCHAR},
+      <if test="record.moneyonmonth != null">
+        moneyOnmonth = #{record.moneyonmonth,jdbcType=DOUBLE},
       </if>
-      <if test="record.serial != null">
-        serial = #{record.serial,jdbcType=VARCHAR},
+      <if test="record.borrowidime != null">
+        borrowidime = #{record.borrowidime,jdbcType=DATE},
       </if>
       <if test="record.walletid != null">
         walletid = #{record.walletid,jdbcType=INTEGER},
@@ -198,27 +222,39 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.rate != null">
+        rate = #{record.rate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalmoney != null">
+        totalmoney = #{record.totalmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.residuemoney != null">
+        residuemoney = #{record.residuemoney,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update loan
-    set loanid = #{record.loanid,jdbcType=INTEGER},
+    update borrow
+    set borrowid = #{record.borrowid,jdbcType=INTEGER},
       account = #{record.account,jdbcType=VARCHAR},
       money = #{record.money,jdbcType=DOUBLE},
-      loantime = #{record.loantime,jdbcType=DATE},
-      myaccount = #{record.myaccount,jdbcType=VARCHAR},
-      serial = #{record.serial,jdbcType=VARCHAR},
+      deadline = #{record.deadline,jdbcType=INTEGER},
+      moneyOnmonth = #{record.moneyonmonth,jdbcType=DOUBLE},
+      borrowidime = #{record.borrowidime,jdbcType=DATE},
       walletid = #{record.walletid,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      rate = #{record.rate,jdbcType=DOUBLE},
+      totalmoney = #{record.totalmoney,jdbcType=DOUBLE},
+      residuemoney = #{record.residuemoney,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Loan">
-    update loan
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Borrow">
+    update borrow
     <set>
       <if test="account != null">
         account = #{account,jdbcType=VARCHAR},
@@ -226,14 +262,14 @@
       <if test="money != null">
         money = #{money,jdbcType=DOUBLE},
       </if>
-      <if test="loantime != null">
-        loantime = #{loantime,jdbcType=DATE},
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=INTEGER},
       </if>
-      <if test="myaccount != null">
-        myaccount = #{myaccount,jdbcType=VARCHAR},
+      <if test="moneyonmonth != null">
+        moneyOnmonth = #{moneyonmonth,jdbcType=DOUBLE},
       </if>
-      <if test="serial != null">
-        serial = #{serial,jdbcType=VARCHAR},
+      <if test="borrowidime != null">
+        borrowidime = #{borrowidime,jdbcType=DATE},
       </if>
       <if test="walletid != null">
         walletid = #{walletid,jdbcType=INTEGER},
@@ -241,18 +277,30 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="totalmoney != null">
+        totalmoney = #{totalmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="residuemoney != null">
+        residuemoney = #{residuemoney,jdbcType=DOUBLE},
+      </if>
     </set>
-    where loanid = #{loanid,jdbcType=INTEGER}
+    where borrowid = #{borrowid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Loan">
-    update loan
+  <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Borrow">
+    update borrow
     set account = #{account,jdbcType=VARCHAR},
       money = #{money,jdbcType=DOUBLE},
-      loantime = #{loantime,jdbcType=DATE},
-      myaccount = #{myaccount,jdbcType=VARCHAR},
-      serial = #{serial,jdbcType=VARCHAR},
+      deadline = #{deadline,jdbcType=INTEGER},
+      moneyOnmonth = #{moneyonmonth,jdbcType=DOUBLE},
+      borrowidime = #{borrowidime,jdbcType=DATE},
       walletid = #{walletid,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER}
-    where loanid = #{loanid,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=DOUBLE},
+      totalmoney = #{totalmoney,jdbcType=DOUBLE},
+      residuemoney = #{residuemoney,jdbcType=DOUBLE}
+    where borrowid = #{borrowid,jdbcType=INTEGER}
   </update>
 </mapper>

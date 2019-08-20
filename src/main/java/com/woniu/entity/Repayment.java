@@ -13,7 +13,7 @@ public class Repayment {
 
     private Integer walletid;
 
-    private Integer loanid;
+    private Integer borrowid;
 
     private String method;
 
@@ -59,12 +59,12 @@ public class Repayment {
         this.walletid = walletid;
     }
 
-    public Integer getLoanid() {
-        return loanid;
+    public Integer getBorrowid() {
+        return borrowid;
     }
 
-    public void setLoanid(Integer loanid) {
-        this.loanid = loanid;
+    public void setBorrowid(Integer borrowid) {
+        this.borrowid = borrowid;
     }
 
     public String getMethod() {

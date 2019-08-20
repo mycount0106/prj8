@@ -7,7 +7,7 @@
     <result column="repaymoney" jdbcType="DOUBLE" property="repaymoney" />
     <result column="repaytime" jdbcType="DATE" property="repaytime" />
     <result column="walletid" jdbcType="INTEGER" property="walletid" />
-    <result column="loanid" jdbcType="INTEGER" property="loanid" />
+    <result column="borrowid" jdbcType="INTEGER" property="borrowid" />
     <result column="method" jdbcType="VARCHAR" property="method" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    repayid, repayname, repaymoney, repaytime, walletid, loanid, method, status
+    repayid, repayname, repaymoney, repaytime, walletid, borrowid, method, status
   </sql>
   <select id="selectByExample" parameterType="com.woniu.entity.RepaymentExample" resultMap="BaseResultMap">
     select
@@ -104,10 +104,10 @@
   </delete>
   <insert id="insert" parameterType="com.woniu.entity.Repayment">
     insert into repayment (repayid, repayname, repaymoney, 
-      repaytime, walletid, loanid, 
+      repaytime, walletid, borrowid, 
       method, status)
     values (#{repayid,jdbcType=INTEGER}, #{repayname,jdbcType=VARCHAR}, #{repaymoney,jdbcType=DOUBLE}, 
-      #{repaytime,jdbcType=DATE}, #{walletid,jdbcType=INTEGER}, #{loanid,jdbcType=INTEGER}, 
+      #{repaytime,jdbcType=DATE}, #{walletid,jdbcType=INTEGER}, #{borrowid,jdbcType=INTEGER}, 
       #{method,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.entity.Repayment">
@@ -128,8 +128,8 @@
       <if test="walletid != null">
         walletid,
       </if>
-      <if test="loanid != null">
-        loanid,
+      <if test="borrowid != null">
+        borrowid,
       </if>
       <if test="method != null">
         method,
@@ -154,8 +154,8 @@
       <if test="walletid != null">
         #{walletid,jdbcType=INTEGER},
       </if>
-      <if test="loanid != null">
-        #{loanid,jdbcType=INTEGER},
+      <if test="borrowid != null">
+        #{borrowid,jdbcType=INTEGER},
       </if>
       <if test="method != null">
         #{method,jdbcType=VARCHAR},
@@ -189,8 +189,8 @@
       <if test="record.walletid != null">
         walletid = #{record.walletid,jdbcType=INTEGER},
       </if>
-      <if test="record.loanid != null">
-        loanid = #{record.loanid,jdbcType=INTEGER},
+      <if test="record.borrowid != null">
+        borrowid = #{record.borrowid,jdbcType=INTEGER},
       </if>
       <if test="record.method != null">
         method = #{record.method,jdbcType=VARCHAR},
@@ -210,7 +210,7 @@
       repaymoney = #{record.repaymoney,jdbcType=DOUBLE},
       repaytime = #{record.repaytime,jdbcType=DATE},
       walletid = #{record.walletid,jdbcType=INTEGER},
-      loanid = #{record.loanid,jdbcType=INTEGER},
+      borrowid = #{record.borrowid,jdbcType=INTEGER},
       method = #{record.method,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -232,8 +232,8 @@
       <if test="walletid != null">
         walletid = #{walletid,jdbcType=INTEGER},
       </if>
-      <if test="loanid != null">
-        loanid = #{loanid,jdbcType=INTEGER},
+      <if test="borrowid != null">
+        borrowid = #{borrowid,jdbcType=INTEGER},
       </if>
       <if test="method != null">
         method = #{method,jdbcType=VARCHAR},
@@ -250,7 +250,7 @@
       repaymoney = #{repaymoney,jdbcType=DOUBLE},
       repaytime = #{repaytime,jdbcType=DATE},
       walletid = #{walletid,jdbcType=INTEGER},
-      loanid = #{loanid,jdbcType=INTEGER},
+      borrowid = #{borrowid,jdbcType=INTEGER},
       method = #{method,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER}
     where repayid = #{repayid,jdbcType=INTEGER}

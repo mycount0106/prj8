@@ -3,6 +3,12 @@ package com.woniu.entity;
 public class Userdata {
     private Integer dataid;
 
+    private String uname;
+
+    private String sex;
+
+    private Integer age;
+
     private String adress;
 
     private String photoOne;
@@ -23,16 +29,36 @@ public class Userdata {
 
     private Integer uid;
 
-    private Integer age;
-
-    private String sex;
-
     public Integer getDataid() {
         return dataid;
     }
 
     public void setDataid(Integer dataid) {
         this.dataid = dataid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getAdress() {
@@ -113,21 +139,5 @@ public class Userdata {
 
     public void setUid(Integer uid) {
         this.uid = uid;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 }
