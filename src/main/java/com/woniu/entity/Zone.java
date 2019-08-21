@@ -1,7 +1,14 @@
 package com.woniu.entity;
 
-public class Zone {
-    private String zid;
+import java.io.Serializable;
+
+public class Zone implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String zid;
 
     private String zname;
 

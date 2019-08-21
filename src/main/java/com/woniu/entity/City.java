@@ -1,13 +1,29 @@
 package com.woniu.entity;
 
-public class City {
-    private String cid;
+import java.io.Serializable;
+import java.util.List;
+
+public class City implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+    private List zones;
+	private String cid;
 
     private String cname;
 
     private String pid;
+    
+    public List getZones() {
+		return zones;
+	}
 
-    public String getCid() {
+	public void setZones(List zones) {
+		this.zones = zones;
+	}
+
+	public String getCid() {
         return cid;
     }
 

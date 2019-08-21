@@ -1,7 +1,14 @@
 package com.woniu.entity;
 
-public class Userdata {
-    private Integer dataid;
+import java.io.Serializable;
+
+public class Userdata implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer dataid;
 
     private String uname;
 
@@ -140,4 +147,13 @@ public class Userdata {
     public void setUid(Integer uid) {
         this.uid = uid;
     }
+
+	@Override
+	public String toString() {
+		return "Userdata [dataid=" + dataid + ", uname=" + uname + ", sex=" + sex + ", age=" + age + ", adress="
+				+ adress + ", photoOne=" + photoOne + ", photoTwo=" + photoTwo + ", cardid=" + cardid + ", cause="
+				+ cause + ", remark=" + remark + ", company=" + company + ", position=" + position + ", income="
+				+ income + ", uid=" + uid + "]";
+	}
+    
 }
