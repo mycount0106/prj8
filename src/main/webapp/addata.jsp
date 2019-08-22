@@ -24,7 +24,7 @@
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">个人中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">我的钱包</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">登陆</a></span></td>
-						<td align="center"	><span style="line-height: 50px; font-size: 20px"><a href="#">注册</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">注册</a></span></td>
 					</tr>
 				</table>
 			</div>
@@ -48,17 +48,18 @@
 						<td>家庭地址：</td>
 						<td>
 							<div id="app">
-								<select id="p" name="province" v-on:change="fillC($event.target.seleceedIndex)">
+								<select id="p" name="province" v-on:change="fillC($event.target.selectedIndex)">
 									<option v-for="p in json">{{p.pname}}</option>
 								</select>
-								<select id="c" name="city" v-on:change="fillZ($event.target.seleceedIndex)">
+								<select id="c" name="city" v-on:change="fillZ($event.target.selectedIndex)">
 									<option v-for="c in citys">{{c.cname}}</option>
 								</select>
 								<select id="z" name="zone" >
 									<option v-for="z in zones">{{z.zname}}</option>
 								</select>
+								</div>
 								<input name="adress" type="text" size="8" />
-							</div>
+							{{citys}}
 						</td>
 					</tr>
 					<tr>
@@ -120,9 +121,9 @@
 		var vm=new Vue({
 			el:"#app",
 			data:{
-				json:"",
-				citys:"",
-				zones:""
+				json:'',
+				citys:'',
+				zones:''
 			},
 			mounted:function(){
 				this.fillP();
@@ -130,10 +131,10 @@
 			methods:{
 				fillP:function(){
 					this.$http({
-						method:"post",
-						url:"/provice/findAll",
+						method:'post',
+						url:'/province/findAll',
 						emulateJSON:true,
-						params:{ },
+						parames:{ },
 					}).then(function(data){
 						this.json=data.body,
 						this.fillC(0);
@@ -142,11 +143,11 @@
 					});
 				},
 				fillC:function(obj){
-					this.citys=json[obj].citys;
+					this.citys=this.json[obj].citys;
 					this.fillZ(0);
 				},
 				fillZ:function(obj){
-					this.zones=citys[obj].zones;
+					this.zones=this.citys[obj].zones;
 				}
 			}
 		});

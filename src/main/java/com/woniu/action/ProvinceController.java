@@ -18,10 +18,12 @@ public class ProvinceController {
     @Resource
 	private IProvinceService provinceService;
     @RequestMapping("findAll")
-    public @ResponseBody String findAll() throws JsonProcessingException {
+    @ResponseBody
+    public String findAll() throws JsonProcessingException {
     	List list = provinceService.findAll();
     	ObjectMapper obj=new ObjectMapper();
     	String json = obj.writeValueAsString(list);
+    	//System.out.println(json);
     	return json;
     }
 }
