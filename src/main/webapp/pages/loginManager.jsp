@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-		<title>权限系统-登陆</title>
+		<title>后台管理系统-登录</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -310,7 +310,7 @@
                 <div class="z-title">
                     <h1>
                         <%-- <img src="${ctx}/assets/images/login/log03.png"> --%>
-                        <span>XX信贷管理系统</span>
+                        <span>后台管理系统</span>
                     </h1>
                    <!--  <p>©CZH</p> -->
                 </div>
