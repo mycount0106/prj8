@@ -1,9 +1,15 @@
 package com.woniu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-    private Integer uid;
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer uid;
 
     private String uname;
 
@@ -62,4 +68,11 @@ public class User {
     public void setIsdelete(Integer isdelete) {
         this.isdelete = isdelete;
     }
+
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", uname=" + uname + ", password=" + password + ", regtime=" + regtime + ", phone="
+				+ phone + ", isdelete=" + isdelete + "]";
+	}
+    
 }

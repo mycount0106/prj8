@@ -9,6 +9,9 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
   </resultMap>
+  <select id="Login" resultMap="BaseResultMap">
+  select u.uname from user u where uname=#{uname} and password=#{password}
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

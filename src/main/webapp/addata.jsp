@@ -23,8 +23,8 @@
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">个人中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">我的钱包</a></span></td>
-						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">登陆</a></span></td>
-						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">注册</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="login">登陆</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="reg">注册</a></span></td>
 					</tr>
 				</table>
 			</div>
@@ -113,6 +113,59 @@
 			</form>
 			
 		</div>
+		<!-- 登陆模态块 -->
+		<div class="modal" id="modalLogin">
+		  <div class="modal-dialog">
+		  <div class="modal-content">
+		  <div class="modal-header"> 欢迎登陆</div>
+		  <div class="modal-body">
+		  <form action="#" method="post">
+		  <div class="form-group">
+		  <label>用户名：</label><input name="uname" class="form-control" id="loginUname"/><span id="error"></span>
+		  </div>
+		  <div class="form-group">
+		  <label>密码：</label><input name="password" class="form-control" type="password" id="loginPassword"/>
+		  <div class="modal-footer">
+		  <button class="btn btn-danger" type="button"id="close1">取消</button>
+		   <button class="btn btn-info btn-primary" type="button" id="login11">登陆</button>
+		  </div>
+		  </div>
+		  </form>
+		  </div>
+		  </div>
+		  </div>
+		</div>
+		<!-- 注册模态块 -->
+		<div class="modal" id="modalreg">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">欢迎注册</div>
+					<div class="modal-body">
+						<form class="form-group" action="#" method="post">
+							<div class="form-group">
+							<label>用户名：</label><input id="regUname" class="form-control"name="uname" type="text" placeholder="请输入用户名：" /><span id="regmge"></span>
+						    </div>
+						    <div class="form-group">
+						    <label>密码：</label><input id="regPassword" class="form-control" name="password" type="password" placeholder="请输入密码：" />
+						    </div>
+						    <div class="form-group">
+						    <label>确认密码：</label><input class="form-control" name="password1" type="password" placeholder="请再次输入密码：" />
+						    </div>
+						    <div class="form-group">
+						    <label>手机号：</label><input id="regPhone"class="form-control" name="phone" type="text" placeholder="请输入11位手机号码：：" /><button id="sendcode" class="btn">发送验证码</button><span id="smsmegs"></span>
+						    </div>
+						    <div class="form-group">
+						    <label>验证码：</label><input id="regCode" class="form-control" name="code" type="text" placeholder="请输入4位验证码：：" />
+						    </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"id="close2">取消</button>
+						<button class="btn btn-info btn-primary" type="button" id="regAjax">注册</button>
+					</div>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
 <script>
@@ -150,6 +203,71 @@
 				}
 			}
 		});
-	}
+	};
+	$(document).ready(function(){
+		$("#login").click(function(){
+			$("#modalLogin").modal("show")
+		});
+		$("#reg").click(function(){
+			$("#modalreg").modal("show")
+		});
+		$("#close1").click(function(){
+			$("#modalLogin").modal("hide")
+		});
+		$("#close2").click(function(){
+			$("#modalreg").modal("hide")
+		});
+	 $("#login11").click(function(){
+		
+         var uname=$("#loginUname").val();
+         var password=$("#loginPassword").val();
+         $.ajax({
+             type:"post",
+             url:"/userLogin/login",
+             data:{"uname":uname,"password":password},
+             success:function(data){
+                 if(data!=null){
+                   
+                	 $("#error").val("登陆成功 ");
+                  }else{
+                     $("#error").val("用户名或密码错误 ");
+                      }
+                 }
+             
+             });
+		});
+	$("#sendcode").click(function(){
+		
+        
+        var phone=$("input[name=phone]").val();
+        $.ajax({
+            type:"post",
+            url:"/userLogin/SmS",
+            data:{"phone":phone},
+            success:function(data){
+                $("#smsmegs").val(data);
+                }
+            
+            });
+		}); 
+	$("#regAjax").click(function(){
+		var uname=$("#regUname").val();
+		var password=$("#regPassword").val();
+		var phone=$("#regPhone").val();
+		var code=$("#regCode").val();
+		 $.ajax({
+             type:"post",
+             url:"/userLogin/reg",
+             data:{"uname":uname,"password":password,"phone":phone,"code":code},
+             success:function(data){
+                 if(data!=null){
+                	 $("#regmge").val(data);
+           			
+                  }
+                 }
+             
+             });
+		});
+	});
 	
 </script>
