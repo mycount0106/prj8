@@ -12,7 +12,7 @@ public class Userdata implements Serializable{
 
     private String uname;
 
-    private String sex;
+    private Integer sex;
 
     private Integer age;
 
@@ -32,7 +32,7 @@ public class Userdata implements Serializable{
 
     private String position;
 
-    private Double income;
+    private String income;
 
     private Integer uid;
 
@@ -52,11 +52,11 @@ public class Userdata implements Serializable{
         this.uname = uname;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -132,11 +132,11 @@ public class Userdata implements Serializable{
         this.position = position;
     }
 
-    public Double getIncome() {
+    public String getIncome() {
         return income;
     }
 
-    public void setIncome(Double income) {
+    public void setIncome(String income) {
         this.income = income;
     }
 

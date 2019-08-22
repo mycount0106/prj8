@@ -30,7 +30,7 @@
 			</div>
 		</nav>
 		<div class="col-md-8 col-md-offset-2">
-			<form  class="form-horizontal" role="form" action="/userdata/save" method="post">
+			<form  class="form-horizontal" role="form" action="/userdata/save" method="post" enctype="multipart/form-data">
 				<table class="table table-hover">
 					<tr>
 						<td>姓名：</td>
@@ -38,7 +38,7 @@
 					</tr>
 					<tr>
 						<td>性别：</td>
-						<td><input type="radio" name="sex"/>男<input type="radio" name="sex"/>女</td>
+						<td><input type="radio" name="sex" value="0" />男<input type="radio" name="sex" value="1"/>女</td>
 					</tr>
 					<tr>
 						<td>年龄：</td>
@@ -59,16 +59,15 @@
 								</select>
 								</div>
 								<input name="adress" type="text" size="8" />
-							{{citys}}
 						</td>
 					</tr>
 					<tr>
 						<td>身份证正面照片：</td>
-						<td><input type="file" name="photo_one"/></td>
+						<td><input type="file" name="files"/></td>
 					</tr>
 					<tr>
 						<td>身份证反面照片：</td>
-						<td><input type="file" name="photo_two"/></td>
+						<td><input type="file" name="files"/></td>
 					</tr>
 					<tr>
 						<td>身份证号：</td>
@@ -77,10 +76,10 @@
 					<tr>
 						<td>借款用途：</td>
 						<td><select name="cause">
-						<option>装修</option>
-						<option>购物</option>
-						<option>旅游</option>
-						<option>其他</option>
+						<option value="装修">装修</option>
+						<option value="购物">购物</option>
+						<option value="旅游">旅游</option>
+						<option value="其他">其他</option>
 						</select>
 						</td>
 					</tr>
@@ -95,11 +94,11 @@
 					<tr>
 						<td>月收入：</td>
 						<td><select name="income">
-						<option>2000以下</option>
-						<option>2000--3500</option>
-						<option>3500--5000</option>
-						<option>5000--7000</option>
-						<option>7000以上</option>
+						<option value="2000以下">2000以下</option>
+						<option value="2000--3500">2000--3500</option>
+						<option value="3500--5000">3500--5000</option>
+						<option value="5000--7000">5000--7000</option>
+						<option value="7000以上">7000以上</option>
 						</select></td>
 					</tr>
 					<tr>

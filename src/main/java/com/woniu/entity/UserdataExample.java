@@ -244,62 +244,52 @@ public class UserdataExample {
             return (Criteria) this;
         }
 
-        public Criteria andSexEqualTo(String value) {
+        public Criteria andSexEqualTo(Integer value) {
             addCriterion("sex =", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexNotEqualTo(String value) {
+        public Criteria andSexNotEqualTo(Integer value) {
             addCriterion("sex <>", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexGreaterThan(String value) {
+        public Criteria andSexGreaterThan(Integer value) {
             addCriterion("sex >", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexGreaterThanOrEqualTo(String value) {
+        public Criteria andSexGreaterThanOrEqualTo(Integer value) {
             addCriterion("sex >=", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexLessThan(String value) {
+        public Criteria andSexLessThan(Integer value) {
             addCriterion("sex <", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexLessThanOrEqualTo(String value) {
+        public Criteria andSexLessThanOrEqualTo(Integer value) {
             addCriterion("sex <=", value, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexLike(String value) {
-            addCriterion("sex like", value, "sex");
-            return (Criteria) this;
-        }
-
-        public Criteria andSexNotLike(String value) {
-            addCriterion("sex not like", value, "sex");
-            return (Criteria) this;
-        }
-
-        public Criteria andSexIn(List<String> values) {
+        public Criteria andSexIn(List<Integer> values) {
             addCriterion("sex in", values, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexNotIn(List<String> values) {
+        public Criteria andSexNotIn(List<Integer> values) {
             addCriterion("sex not in", values, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexBetween(String value1, String value2) {
+        public Criteria andSexBetween(Integer value1, Integer value2) {
             addCriterion("sex between", value1, value2, "sex");
             return (Criteria) this;
         }
 
-        public Criteria andSexNotBetween(String value1, String value2) {
+        public Criteria andSexNotBetween(Integer value1, Integer value2) {
             addCriterion("sex not between", value1, value2, "sex");
             return (Criteria) this;
         }
@@ -934,52 +924,62 @@ public class UserdataExample {
             return (Criteria) this;
         }
 
-        public Criteria andIncomeEqualTo(Double value) {
+        public Criteria andIncomeEqualTo(String value) {
             addCriterion("income =", value, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeNotEqualTo(Double value) {
+        public Criteria andIncomeNotEqualTo(String value) {
             addCriterion("income <>", value, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeGreaterThan(Double value) {
+        public Criteria andIncomeGreaterThan(String value) {
             addCriterion("income >", value, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeGreaterThanOrEqualTo(Double value) {
+        public Criteria andIncomeGreaterThanOrEqualTo(String value) {
             addCriterion("income >=", value, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeLessThan(Double value) {
+        public Criteria andIncomeLessThan(String value) {
             addCriterion("income <", value, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeLessThanOrEqualTo(Double value) {
+        public Criteria andIncomeLessThanOrEqualTo(String value) {
             addCriterion("income <=", value, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeIn(List<Double> values) {
+        public Criteria andIncomeLike(String value) {
+            addCriterion("income like", value, "income");
+            return (Criteria) this;
+        }
+
+        public Criteria andIncomeNotLike(String value) {
+            addCriterion("income not like", value, "income");
+            return (Criteria) this;
+        }
+
+        public Criteria andIncomeIn(List<String> values) {
             addCriterion("income in", values, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeNotIn(List<Double> values) {
+        public Criteria andIncomeNotIn(List<String> values) {
             addCriterion("income not in", values, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeBetween(Double value1, Double value2) {
+        public Criteria andIncomeBetween(String value1, String value2) {
             addCriterion("income between", value1, value2, "income");
             return (Criteria) this;
         }
 
-        public Criteria andIncomeNotBetween(Double value1, Double value2) {
+        public Criteria andIncomeNotBetween(String value1, String value2) {
             addCriterion("income not between", value1, value2, "income");
             return (Criteria) this;
         }
