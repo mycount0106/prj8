@@ -5,6 +5,16 @@
     <id column="rid" jdbcType="INTEGER" property="rid" />
     <result column="rname" jdbcType="VARCHAR" property="rname" />
   </resultMap> 
+  
+   <resultMap id="BaseResultMapWithTree" extends="BaseResultMap" type="com.woniu.entity.Role" >
+  	<collection property="trees" column="rid" select="com.woniu.mapper.TreeMapper.findByRid"></collection>
+  </resultMap>
+  
+   <select id="findByAid" resultMap="BaseResultMap">
+  	SELECT * FROM role r WHERE EXISTS (
+	    SELECT rid FROM adminrole WHERE aid=#{aid} AND rid=r.rid		
+	)
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

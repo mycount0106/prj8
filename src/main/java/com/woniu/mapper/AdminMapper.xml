@@ -7,7 +7,18 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="regtime" jdbcType="DATE" property="regtime" />
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    
+    <collection property="roles" column="aid" select="com.woniu.mapper.RoleMapper.findByAid"></collection>
   </resultMap>
+  
+  <resultMap id="BaseResultMapWithTree" type="com.woniu.entity.Admin">
+  	<collection property="trees" column="aid" select="com.woniu.mapper.TreeMapper.findByAid"/>
+  </resultMap>
+  
+  <select id="login" resultMap="BaseResultMapWithTree">
+  	select * from admin where aname=#{aname} and password=#{password} and isdelete=0
+  </select>  
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -99,7 +110,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.entity.Admin">
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="aid" parameterType="com.woniu.entity.Admin">
     insert into admin (aid, aname, password, 
       regtime, isdelete)
     values (#{aid,jdbcType=INTEGER}, #{aname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
