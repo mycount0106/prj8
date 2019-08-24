@@ -25,5 +25,8 @@ public class UserServiceImpl implements IUserService {
 		userMapper.insertSelective(user);
 		
 	}
-
+	@Override
+    public User findOne(Integer uid) {
+    	return userMapper.selectByPrimaryKey(uid);
+    }
 }

@@ -98,13 +98,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.entity.Linkman">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="linkid" parameterType="com.woniu.entity.Linkman">
     insert into linkman (linkid, linkname, relation, 
       phone)
     values (#{linkid,jdbcType=INTEGER}, #{linkname,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.entity.Linkman">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="linkid" parameterType="com.woniu.entity.Linkman">
     insert into linkman
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="linkid != null">

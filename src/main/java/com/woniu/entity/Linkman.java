@@ -1,7 +1,14 @@
 package com.woniu.entity;
 
-public class Linkman {
-    private Integer linkid;
+import java.io.Serializable;
+
+public class Linkman implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer linkid;
 
     private String linkname;
 
@@ -40,4 +47,11 @@ public class Linkman {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+	@Override
+	public String toString() {
+		return "Linkman [linkid=" + linkid + ", linkname=" + linkname + ", relation=" + relation + ", phone=" + phone
+				+ "]";
+	}
+    
 }

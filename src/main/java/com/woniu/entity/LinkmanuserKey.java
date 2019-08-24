@@ -1,11 +1,26 @@
 package com.woniu.entity;
 
-public class LinkmanuserKey {
-    private Integer linkid;
+import java.io.Serializable;
+
+public class LinkmanuserKey implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer linkid;
 
     private Integer uid;
+    
+    public LinkmanuserKey(Integer linkid, Integer uid) {
+		this.linkid = linkid;
+		this.uid = uid;
+	}
+    
+	public LinkmanuserKey() {
+	}
 
-    public Integer getLinkid() {
+	public Integer getLinkid() {
         return linkid;
     }
 

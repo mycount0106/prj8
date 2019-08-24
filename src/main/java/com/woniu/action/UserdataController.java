@@ -45,7 +45,7 @@ public class UserdataController {
 		}
 		System.out.println(userdata.toString());
 		userdataServiceImpl.save(userdata);
-		return null;
+		return "redirect:/user/addLinkman.jsp";
 	}
 	@RequestMapping("updata")
 	public String update(Userdata userdata) {

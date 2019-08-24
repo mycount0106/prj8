@@ -91,11 +91,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.entity.LinkmanuserKey">
+  <insert id="insert" useGeneratedKeys="true" parameterType="com.woniu.entity.LinkmanuserKey">
     insert into linkmanuser (linkid, uid)
     values (#{linkid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniu.entity.LinkmanuserKey">
+  <insert id="insertSelective" useGeneratedKeys="true" parameterType="com.woniu.entity.LinkmanuserKey">
     insert into linkmanuser
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="linkid != null">

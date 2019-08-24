@@ -22,8 +22,7 @@ public class UserLoginController {
 	@Resource
 	private IUserService userServiceImpl;
     @RequestMapping("login")
-    @ResponseBody
-    public User Login(User user,HttpServletRequest req) {
+    public @ResponseBody User Login(User user,HttpServletRequest req) {
     	System.out.println(user);
     	User u = userServiceImpl.login(user);
     	System.out.println(u);

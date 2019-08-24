@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8">
 <title>增加用户资料</title>
-<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 </head>
@@ -103,7 +103,9 @@
 					</tr>
 					<tr>
 						<td>备注：</td>
-						<td><textarea name="remark" ></textarea> </td>
+						<td><textarea name="remark" ></textarea>
+						<input name="uid" type="hidden" value="${user.uid }"/>
+						 </td>
 					</tr>
 					<tr>
 						<td colspan="1" align="center"><button type="submit" class="btn btn-danger">确认并下一步</button></td>

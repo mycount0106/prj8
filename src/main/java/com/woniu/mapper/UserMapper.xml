@@ -10,7 +10,7 @@
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
   </resultMap>
   <select id="Login" resultMap="BaseResultMap">
-  select u.uname from user u where uname=#{uname} and password=#{password}
+  select u.uname,u.uid from user u where uname=#{uname} and password=#{password}
   </select>
   <sql id="Example_Where_Clause">
     <where>
