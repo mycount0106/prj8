@@ -106,7 +106,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniu.entity.Role">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="rid" parameterType="com.woniu.entity.Role">
     insert into role (rid, rname)
     values (#{rid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR})
   </insert>

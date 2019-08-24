@@ -16,7 +16,7 @@ import com.woniu.service.ITreeService;
 public class AdminLoginController {
 	/**
 	  *   后台用户登录
-	 * YYJ
+	  * 	YYJ
 	 */
 	@Resource
 	private IAdminService adminServiceImpl;

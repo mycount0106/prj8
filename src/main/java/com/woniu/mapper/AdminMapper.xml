@@ -112,9 +112,9 @@
   </delete>
   <insert id="insert"  useGeneratedKeys="true" keyProperty="aid" parameterType="com.woniu.entity.Admin">
     insert into admin (aid, aname, password, 
-      regtime, isdelete)
+      regtime)
     values (#{aid,jdbcType=INTEGER}, #{aname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{regtime,jdbcType=DATE}, #{isdelete,jdbcType=INTEGER})
+      #{regtime,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.entity.Admin">
     insert into admin

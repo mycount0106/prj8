@@ -1,5 +1,7 @@
 package com.woniu.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Override
 	public void save(Admin admin,Integer[] chk) {
+		Date date = new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		admin.setRegtime(timestamp);
 		@SuppressWarnings("unused")
 		int a = adminMapper.insert(admin);
 		if(chk!=null) {
@@ -34,7 +39,7 @@ public class AdminServiceImpl implements IAdminService{
 	public void delete(Integer aid) {
 		Admin admin = new Admin();
 		admin.setAid(aid);
-	//	admin.setIsdelete(true);
+		admin.setIsdelete(1);
 		adminMapper.updateByPrimaryKeySelective(admin);
 	}
 	@Override
@@ -67,12 +72,11 @@ public class AdminServiceImpl implements IAdminService{
 	public void revoke(Integer aid) {
 		Admin admin = new Admin();
 		admin.setAid(aid);
-		//admin.setIsdelete(false);
+		admin.setIsdelete(0);
 		adminMapper.updateByPrimaryKeySelective(admin);
 	}
 	@Override
 	public Admin login(Admin admin) {
-		// TODO Auto-generated method stub
 		return adminMapper.login(admin);
 	}
 }
