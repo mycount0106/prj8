@@ -8,6 +8,20 @@
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
   </resultMap>
+  
+  
+  <select id="findByAid" resultMap="BaseResultMap">
+  	select * from tree t where exists(
+  		select a.tid from roletree a,adminrole b
+  		where a.rid=b.rid and b.aid=#{aid} and a.tid=t.tid
+  	)
+  </select>
+  
+<select id="findByRid" resultMap="BaseResultMap">
+  	SELECT * FROM tree WHERE tid IN (
+	SELECT tid FROM roletree WHERE rid=#{rid})
+  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

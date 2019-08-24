@@ -1,9 +1,28 @@
 package com.woniu.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Admin {
-    private Integer aid;
+	
+	private List<Tree> trees;
+	public List<Tree> getTrees() {
+		return trees;
+	}
+	public void setTrees(List<Tree> trees) {
+		this.trees = trees;
+	}
+	private List<Role> roles;
+    public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	
+	private Integer aid;
 
     private String aname;
 
