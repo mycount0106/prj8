@@ -29,7 +29,7 @@
 					</td>
 					<td>${admin.isdelete==1?'已删除':'正常' }</td>
 					<td>
-						<a href="${admin.isdelete==0?'delete':'revoke' }?aid=${admin.aid }">${admin.isdelete==1?'删除':'恢复' }</a>
+						<a href="${admin.isdelete==0?'delete':'revoke' }?aid=${admin.aid }">${admin.isdelete!=1?'删除':'恢复' }</a>
 						<a href="findById?aid=${admin.aid }">更新</a>
 					</td>
 				</tr>
