@@ -9,6 +9,9 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
   </resultMap>
+  <select id="findByUid" resultMap="BaseResultMap">
+  select * from user where uid=#{uid} and password=#{password}
+  </select>
   <select id="Login" resultMap="BaseResultMap">
   select u.uname,u.uid from user u where uname=#{uname} and password=#{password}
   </select>

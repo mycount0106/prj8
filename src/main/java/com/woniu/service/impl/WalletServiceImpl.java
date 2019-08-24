@@ -17,12 +17,22 @@ public class WalletServiceImpl implements IWalletService {
 	@Override
 	public void save(User user) {
 		Wallet wallet=new Wallet();
-		wallet.setAccount(Integer.parseInt(user.getPhone()));
+		wallet.setAccount(user.getPhone());
 		wallet.setUid(user.getUid());
 		wallet.setCreatetime(new Date());
 		wallet.setLimit(5000.0);
 		wallet.setCanlimit(5000.0);
 		walletMapper.insertSelective(wallet);
+	}
+	@Override
+	public Wallet findOne(Integer uid) {
+		
+		return walletMapper.findByUid(uid);
+	}
+	@Override
+	public void update(Wallet wallet) {
+		
+		walletMapper.updateByUid(wallet);
 	}
 
 }

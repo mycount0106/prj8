@@ -29,4 +29,9 @@ public class UserServiceImpl implements IUserService {
     public User findOne(Integer uid) {
     	return userMapper.selectByPrimaryKey(uid);
     }
+	@Override
+	public User findByUid(Integer uid, String password) {
+		
+		return userMapper.findByUid(uid, password);
+	}
 }

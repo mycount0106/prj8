@@ -6,4 +6,5 @@ public interface IUserService {
     public User login(User user);
     public void save(User user);
     public User findOne(Integer uid);
+    public User findByUid(Integer uid,String password);
 }

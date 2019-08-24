@@ -262,52 +262,62 @@ public class WalletExample {
             return (Criteria) this;
         }
 
-        public Criteria andAccountEqualTo(Integer value) {
+        public Criteria andAccountEqualTo(String value) {
             addCriterion("account =", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotEqualTo(Integer value) {
+        public Criteria andAccountNotEqualTo(String value) {
             addCriterion("account <>", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThan(Integer value) {
+        public Criteria andAccountGreaterThan(String value) {
             addCriterion("account >", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAccountGreaterThanOrEqualTo(String value) {
             addCriterion("account >=", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThan(Integer value) {
+        public Criteria andAccountLessThan(String value) {
             addCriterion("account <", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThanOrEqualTo(Integer value) {
+        public Criteria andAccountLessThanOrEqualTo(String value) {
             addCriterion("account <=", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIn(List<Integer> values) {
+        public Criteria andAccountLike(String value) {
+            addCriterion("account like", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountNotLike(String value) {
+            addCriterion("account not like", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountIn(List<String> values) {
             addCriterion("account in", values, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotIn(List<Integer> values) {
+        public Criteria andAccountNotIn(List<String> values) {
             addCriterion("account not in", values, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountBetween(Integer value1, Integer value2) {
+        public Criteria andAccountBetween(String value1, String value2) {
             addCriterion("account between", value1, value2, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotBetween(Integer value1, Integer value2) {
+        public Criteria andAccountNotBetween(String value1, String value2) {
             addCriterion("account not between", value1, value2, "account");
             return (Criteria) this;
         }

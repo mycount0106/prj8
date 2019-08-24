@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
+	User findByUid(Integer uid,String password);
 	User Login(User user);
     long countByExample(UserExample example);
 

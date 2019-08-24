@@ -22,7 +22,7 @@
 						<td align="center"><span style="line-height: 50px; font-size: 20px";><a href="#">首页</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">个人中心</a></span></td>
-						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">我的钱包</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/wallet/findOne?uid=${user.uid}">我的钱包</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="login">登陆</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="reg">注册</a></span></td>
 					</tr>

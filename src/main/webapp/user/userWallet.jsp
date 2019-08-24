@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>增加用户联系人</title>
+<title>用户钱包</title>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -37,48 +37,71 @@
 				</table>
 			</div>
 		</nav>
-		<div class="col-md-8 col-md-offset-2" style="color: green;"><h3 >增加联系人</h3></div>
 		<div class="col-md-8 col-md-offset-2">
-		<form action="/linkman/save" method="post">
-		<table class="table table-hover" ">
-		<tr class="danger" >
-		<td align="center">联系人名称</td>
-		<td>关系</td>
-		<td>电话号码</td>
+		<div class="col-md-8 "><h3>资产总览</h3></div>
+		<table class="table">
+		<tr>
+		<td>账户金额：</td>
+		<td>${wallet.money }<input type="hidden" name="user" value="${user.uid }" /></td>
 		</tr>
 		<tr>
-		<td align="center"><input name="linkname" type="text"/></td>
-		<td>
-		<select name="relation">
-		<option value="亲属">亲属</option>
-		<option value="朋友">朋友</option>
-		<option value="同事">同事</option>
-		<option value="其他">其他</option>
-		</select>
-		</td>
-		<td><input name="phone" type="text"/></td>
+		<td>总额度：</td>
+		<td>${wallet.limit }</td>
 		</tr>
 		<tr>
-		<td align="center"><input name="linkname" type="text"/></td>
-		<td>
-		<select name="relation">
-		<option value="亲属">亲属</option>
-		<option value="朋友">朋友</option>
-		<option value="同事">同事</option>
-		<option value="其他">其他</option>
-		</select>
-		</td>
-		<td><input name="phone" type="text"/></td>
+		<td>可用额度：</td>
+		<td>${wallet.canlimit }</td>
 		</tr>
 		<tr>
-		<td colspan="3" align="center"><input name="uid" type="hidden" value="${user.uid }" /></td>
+		<td>支付宝账户：</td>
+		<td>${wallet.account }</td>
 		</tr>
 		<tr>
-		<td colspan="3" align="center"><button class="btn btn-success" id="sub">确认并提交</button></td>
+		<td>支付密码：</td>
+		<c:if test="${wallet.password!=null }">
+		<td><button class="btn a1">修改密码</button></td>
+		</c:if>
+		<c:if test="${wallet.password==null }">
+		<td><button class="btn a1">设置密码</button></td>
+		</c:if>
 		</tr>
 		</table>
-		</div>	
-		</form>
+		</div>
+		<div id="pas"class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 "><h3>修改密码</h3></div>
+		<table class="table col-md-8">
+		<tr>
+		<td><div>登陆密码：</div></td>
+		<td><div><input type="password" id="upas"/></div></td>
+		</tr>
+		<tr>
+		<td><div>设置支付密码：</div></td>
+		<td><div><input type="password" id="wpas"/></div></td>
+		</tr>
+		<tr>
+		<td colspan="1" align="center"><button class="btn btn-success" id="updataPas">确定</button></td>
+		
+		</tr>
+		</table>
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 "><h3>我的借款</h3></div>
+		<table class="table col-md-8">
+		<tr>
+		<td><div>暂无数据</div></td>
+		</tr>
+		
+		</table>
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 "><h3>我的理财</h3></div>
+		<table class="table col-md-8">
+		<tr>
+		<td><div>暂无数据</div></td>
+		</tr>
+		
+		</table>
+		</div>
 		<!-- 登陆模态块 -->
 		<div class="modal" id="modalLogin">
 		  <div class="modal-dialog">
@@ -137,6 +160,7 @@
 <script>
 
 	$(document).ready(function(){
+		 $("#pas").hide();
 		$("#login").click(function(){
 			$("#modalLogin").modal("show");
 		});
@@ -149,6 +173,9 @@
 		$("#close2").click(function(){
 			$("#modalreg").modal("hide");
 		});
+		$(".a1").click(function(){
+           $("#pas").show(1000);
+			});
 		$("#login11").click(function(){
 			
 	         var uname=$("#loginUname").val();
@@ -201,9 +228,24 @@
 	             
 	             });
 			});
-	  $("#sub").click(function(){
-           alert("已提交资料,您可以通过我的钱包查看额度 ");
-
+	  $("#updataPas").click(function(){
+         alert(1);
+          var uid=$("input[name=user]").val();
+	      var password=$("#upas").val();
+        var password1=$("#wpas").val();
+        $.ajax({
+            type:"post",
+            url:"/wallet/update",
+            data:{"uid":uid,"password":password,"password1":password1},
+            success:function(data){
+               if(data!=null){
+                   alert("修改成功 ");
+                   $("#pas").hide();
+                   }else{
+                   alert("密码不正确 ");
+                       }
+                }
+            });
 		  });
 	});
 	

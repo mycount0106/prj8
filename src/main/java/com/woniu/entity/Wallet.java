@@ -1,13 +1,19 @@
 package com.woniu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Wallet {
-    private Integer walletid;
+public class Wallet implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer walletid;
 
     private Double limit;
 
-    private Integer account;
+    private String account;
 
     private Double money;
 
@@ -35,11 +41,11 @@ public class Wallet {
         this.limit = limit;
     }
 
-    public Integer getAccount() {
+    public String getAccount() {
         return account;
     }
 
-    public void setAccount(Integer account) {
+    public void setAccount(String account) {
         this.account = account;
     }
 

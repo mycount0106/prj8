@@ -9,7 +9,7 @@
 	    <javaModelGenerator targetPackage="com.woniu.entity" targetProject=".\src\main\java" ></javaModelGenerator>
 	    <sqlMapGenerator targetPackage="com.woniu.mapper" targetProject=".\src\main\java" ></sqlMapGenerator>
 	    <javaClientGenerator targetPackage="com.woniu.mapper" targetProject=".\src\main\java" type="XMLMAPPER" />
-	    <table schema="" tableName="userdata" ></table>
+	    <table schema="" tableName="wallet" ></table>
 	    
 	  </context>
 	</generatorConfiguration>
