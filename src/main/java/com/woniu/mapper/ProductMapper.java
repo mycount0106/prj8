@@ -4,6 +4,7 @@ import com.woniu.entity.Product;
 import com.woniu.entity.ProductExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface ProductMapper {
     long countByExample(ProductExample example);
@@ -16,7 +17,7 @@ public interface ProductMapper {
 
     int insertSelective(Product record);
 
-    List<Product> selectByExample(ProductExample example);
+    List<Product> selectByExample(ProductExample example, RowBounds rowBounds);
 
     Product selectByPrimaryKey(Integer productid);
 
