@@ -172,8 +172,6 @@
 						<a href="">授权出借</a>
 						<div class="b-text">剩余名额184人</div>
 					</div>
-				
-				
 				</div>	
 			</div>
 			<a class="invite-friend" href=""></a>
