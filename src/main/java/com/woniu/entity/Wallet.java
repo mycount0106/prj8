@@ -11,7 +11,7 @@ public class Wallet implements Serializable{
 
 	private Integer walletid;
 
-    private Double limit;
+    private Double countlimit;
 
     private String account;
 
@@ -33,12 +33,12 @@ public class Wallet implements Serializable{
         this.walletid = walletid;
     }
 
-    public Double getLimit() {
-        return limit;
+    public Double getCountlimit() {
+        return countlimit;
     }
 
-    public void setLimit(Double limit) {
-        this.limit = limit;
+    public void setCountlimit(Double countlimit) {
+        this.countlimit = countlimit;
     }
 
     public String getAccount() {

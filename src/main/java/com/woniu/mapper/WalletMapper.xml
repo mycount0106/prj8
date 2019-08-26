@@ -3,7 +3,7 @@
 <mapper namespace="com.woniu.mapper.WalletMapper">
   <resultMap id="BaseResultMap" type="com.woniu.entity.Wallet">
     <id column="walletid" jdbcType="INTEGER" property="walletid" />
-    <result column="limit" jdbcType="DOUBLE" property="limit" />
+    <result column="countlimit" jdbcType="DOUBLE" property="countlimit" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="money" jdbcType="DOUBLE" property="money" />
     <result column="canlimit" jdbcType="DOUBLE" property="canlimit" />
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    walletid, limit, account, money, canlimit, uid, createtime, password
+    walletid, countlimit, account, money, canlimit, uid, createtime, password
   </sql>
   <select id="selectByExample" parameterType="com.woniu.entity.WalletExample" resultMap="BaseResultMap">
     select
@@ -109,10 +109,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.entity.Wallet">
-    insert into wallet (walletid, limit, account, 
+    insert into wallet (walletid, countlimit, account, 
       money, canlimit, uid, 
       createtime, password)
-    values (#{walletid,jdbcType=INTEGER}, #{limit,jdbcType=DOUBLE}, #{account,jdbcType=VARCHAR}, 
+    values (#{walletid,jdbcType=INTEGER}, #{countlimit,jdbcType=DOUBLE}, #{account,jdbcType=VARCHAR}, 
       #{money,jdbcType=DOUBLE}, #{canlimit,jdbcType=DOUBLE}, #{uid,jdbcType=INTEGER}, 
       #{createtime,jdbcType=DATE}, #{password,jdbcType=VARCHAR})
   </insert>
@@ -122,8 +122,8 @@
       <if test="walletid != null">
         walletid,
       </if>
-      <if test="limit != null">
-        limit,
+      <if test="countlimit != null">
+        countlimit,
       </if>
       <if test="account != null">
         account,
@@ -148,8 +148,8 @@
       <if test="walletid != null">
         #{walletid,jdbcType=INTEGER},
       </if>
-      <if test="limit != null">
-        #{limit,jdbcType=DOUBLE},
+      <if test="countlimit != null">
+        #{countlimit,jdbcType=DOUBLE},
       </if>
       <if test="account != null">
         #{account,jdbcType=VARCHAR},
@@ -183,8 +183,8 @@
       <if test="record.walletid != null">
         walletid = #{record.walletid,jdbcType=INTEGER},
       </if>
-      <if test="record.limit != null">
-        limit = #{record.limit,jdbcType=DOUBLE},
+      <if test="record.countlimit != null">
+        countlimit = #{record.countlimit,jdbcType=DOUBLE},
       </if>
       <if test="record.account != null">
         account = #{record.account,jdbcType=VARCHAR},
@@ -212,7 +212,7 @@
   <update id="updateByExample" parameterType="map">
     update wallet
     set walletid = #{record.walletid,jdbcType=INTEGER},
-      limit = #{record.limit,jdbcType=DOUBLE},
+      countlimit = #{record.countlimit,jdbcType=DOUBLE},
       account = #{record.account,jdbcType=VARCHAR},
       money = #{record.money,jdbcType=DOUBLE},
       canlimit = #{record.canlimit,jdbcType=DOUBLE},
@@ -226,8 +226,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Wallet">
     update wallet
     <set>
-      <if test="limit != null">
-        limit = #{limit,jdbcType=DOUBLE},
+      <if test="countlimit != null">
+        countlimit = #{countlimit,jdbcType=DOUBLE},
       </if>
       <if test="account != null">
         account = #{account,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Wallet">
     update wallet
-    set limit = #{limit,jdbcType=DOUBLE},
+    set countlimit = #{countlimit,jdbcType=DOUBLE},
       account = #{account,jdbcType=VARCHAR},
       money = #{money,jdbcType=DOUBLE},
       canlimit = #{canlimit,jdbcType=DOUBLE},

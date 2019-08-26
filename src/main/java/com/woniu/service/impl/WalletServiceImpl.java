@@ -20,8 +20,8 @@ public class WalletServiceImpl implements IWalletService {
 		wallet.setAccount(user.getPhone());
 		wallet.setUid(user.getUid());
 		wallet.setCreatetime(new Date());
-		wallet.setLimit(5000.0);
-		wallet.setCanlimit(5000.0);
+		wallet.setCountlimit(5000.0);
+		wallet.setCanlimit(5000.00);
 		walletMapper.insertSelective(wallet);
 	}
 	@Override

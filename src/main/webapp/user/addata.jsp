@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +24,14 @@
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/userdata/findMyCentre?uid=${user.uid }">个人中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/wallet/findOne?uid=${user.uid}">我的钱包</a></span></td>
+						<c:if test="${user!=null }">
+						<td align="center"><span style="line-height: 50px; font-size: 20px">${user.uname }</span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="removeLogin">退出登陆</a></span></td>
+					    </c:if>
+					  <c:if test="${user==null }">
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="login">登陆</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="reg">注册</a></span></td>
+					   </c:if>
 					</tr>
 				</table>
 			</div>
@@ -228,12 +235,14 @@
              url:"/userLogin/login",
              data:{"uname":uname,"password":password},
              success:function(data){
-                 if(data!=null){
-                   
-                	 $("#error").val("登陆成功 ");
-                  }else{
-                     $("#error").val("用户名或密码错误 ");
-                      }
+            	 if(data==0){
+	                   alert("登陆成功 ");
+	                   $("#modalLogin").modal("hide");
+	                	
+	                  }else{
+		                  alert("用户名或密码错误 ");
+	                     
+	                      }
                  }
              
              });
@@ -269,6 +278,17 @@
                  }
              
              });
+		});
+	$("#removeLogin").click(function(){
+         $.ajax({
+               type:"post",
+               url:"/userLogin/removeLogin",
+               success:function(data){
+                 alert(data);
+                 window.location.reload();
+                   }
+             });
+
 		});
 	});
 	

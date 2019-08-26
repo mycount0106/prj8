@@ -26,7 +26,7 @@
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/wallet/findOne?uid=${user.uid}">我的钱包</a></span></td>
 						<c:if test="${user!=null }">
 						<td align="center"><span style="line-height: 50px; font-size: 20px">${user.uname }</span></td>
-						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="reg">退出登陆</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="removeLogin">退出登陆</a></span></td>
 					    </c:if>
 					  <c:if test="${user==null }">
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="login">登陆</a></span></td>
@@ -164,7 +164,7 @@
 						    <label>确认密码：</label><input class="form-control" name="password1" type="password" placeholder="请再次输入密码：" />
 						    </div>
 						    <div class="form-group">
-						    <label>手机号：</label><input id="regPhone"class="form-control" name="phone" type="text" placeholder="请输入11位手机号码：：" /><button id="sendcode" class="btn">发送验证码</button><span id="smsmegs"></span>
+						    <label>手机号：</label><input id="regPhone"class="form-control" name="phone" type="text" placeholder="请输入11位手机号码：：" /><button id="sendcode" type="button" class="btn">发送验证码</button><span id="smsmegs"></span>
 						    </div>
 						    <div class="form-group">
 						    <label>验证码：</label><input id="regCode" class="form-control" name="code" type="text" placeholder="请输入4位验证码：：" />
@@ -208,12 +208,13 @@
 	             url:"/userLogin/login",
 	             data:{"uname":uname,"password":password},
 	             success:function(data){
-	                 if(data!=null){
-	                   alert(data);
-	                	 $("#error").val("登陆成功 ");
+	                 if(data==0){
+	                   alert("登陆成功 ");
+	                   $("#modalLogin").modal("hide");
+	                   window.location.reload();
 	                  }else{
-		                  alert(1);
-	                     $("#error").val("用户名或密码错误 ");
+		                  alert("用户名或密码错误 ");
+	                     
 	                      }
 	                 },
 	             
@@ -228,7 +229,8 @@
 	            url:"/userLogin/SmS",
 	            data:{"phone":phone},
 	            success:function(data){
-	                $("#smsmegs").val(data);
+	                $("#smsmegs").text(data);
+	               
 	                }
 	            
 	            });
@@ -245,7 +247,7 @@
 	             success:function(data){
 	                 if(data!=null){
 	                	 $("#regmge").val(data);
-	           			
+	                	 $("#modalreg").modal("hide");
 	                  }
 	                 }
 	             
@@ -270,6 +272,17 @@
                 }
             });
 		  });
+	  $("#removeLogin").click(function(){
+	         $.ajax({
+	               type:"post",
+	               url:"/userLogin/removeLogin",
+	               success:function(data){
+	                 alert(data);
+	                 window.location.reload();
+	                   }
+	             });
+
+			});
 	});
 	
 </script>

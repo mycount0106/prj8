@@ -22,15 +22,15 @@ public class UserLoginController {
 	@Resource
 	private IUserService userServiceImpl;
     @RequestMapping("login")
-    public @ResponseBody User Login(User user,HttpServletRequest req) {
-    	System.out.println(user);
+    public @ResponseBody Integer Login(User user,HttpServletRequest req) {
+    	System.out.println("正在登陆"+user);
     	User u = userServiceImpl.login(user);
-    	System.out.println(u);
+    	System.out.println("查找到用户"+u);
     	if(u!=null) {
     		req.getSession().setAttribute("user", u);
-    		return u;
+    		return 0;
     	}else {
-    		return null;
+    		return 1;
     	}
     }
     @RequestMapping("SmS")
@@ -71,5 +71,11 @@ public class UserLoginController {
     		return "注册失败";
     	}
     	
+    }
+    @RequestMapping("removeLogin")
+    public @ResponseBody String removeLogin(HttpServletRequest req) {
+    	System.out.println("退出登陆");
+    	req.getSession().removeValue("user");
+    	return "退出成功";
     }
 }
