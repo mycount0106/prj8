@@ -17,6 +17,9 @@
     <result column="income" jdbcType="VARCHAR" property="income" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
   </resultMap>
+  <select id="findByUid" resultMap="BaseResultMap">
+  select * from userdata where uid=#{uid}
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

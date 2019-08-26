@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>增加用户资料</title>
+<title>用户钱包</title>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -23,98 +24,107 @@
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/userdata/findMyCentre?uid=${user.uid }">个人中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/wallet/findOne?uid=${user.uid}">我的钱包</a></span></td>
+						<c:if test="${user!=null }">
+						<td align="center"><span style="line-height: 50px; font-size: 20px">${user.uname }</span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="reg">退出登陆</a></span></td>
+					    </c:if>
+					  <c:if test="${user==null }">
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="login">登陆</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#" id="reg">注册</a></span></td>
+					   </c:if>
 					</tr>
+					
 				</table>
 			</div>
 		</nav>
 		<div class="col-md-8 col-md-offset-2">
-			<form  class="form-horizontal" role="form" action="/userdata/save" method="post" enctype="multipart/form-data">
-				<table class="table table-hover">
+		<div class="col-md-8 "><h3>我的资料</h3></div>
+		<div class="col-md-8">
+		<table class="table">
+		<tr>
+		<td>用户名：</td>
+		<td>${user.uname }</td>
+		</tr>
+		<tr>
+		<td>密码：</td>
+		<td><button class="btn">修改密码</button></td>
+		</tr>
+		<tr>
+		<td>手机号：</td>
+		<td>${user.phone }</td>
+		</tr>
+		</table>
+		</div>
+		<div class="col-md-8 "><h3>我的信息</h3></div>
+		<div class="col-md-8">
+		<table class="table table-hover">
 					<tr>
 						<td>姓名：</td>
-						<td><input name="uname" placeholder="请填写真实姓名" /></td>
+						<td>${userdata.uname }</td>
 					</tr>
 					<tr>
 						<td>性别：</td>
-						<td><input type="radio" name="sex" value="0" />男<input type="radio" name="sex" value="1"/>女</td>
+						<td>${userdata.sex==0?'男':'女' }</td>
 					</tr>
 					<tr>
 						<td>年龄：</td>
-						<td><input type="text" name="age"placeholder="年龄和身份证保持一致"/></td>
+						<td>${userdata.age }</td>
 					</tr>
 					<tr>
 						<td>家庭地址：</td>
 						<td>
-							<div id="app">
-								<select id="p" name="province" v-on:change="fillC($event.target.selectedIndex)">
-									<option v-for="p in json">{{p.pname}}</option>
-								</select>
-								<select id="c" name="city" v-on:change="fillZ($event.target.selectedIndex)">
-									<option v-for="c in citys">{{c.cname}}</option>
-								</select>
-								<select id="z" name="zone" >
-									<option v-for="z in zones">{{z.zname}}</option>
-								</select>
-								</div>
-								<input name="adress" type="text" size="8" />
+							${userdata.adress }
 						</td>
 					</tr>
 					<tr>
 						<td>身份证正面照片：</td>
-						<td><input type="file" name="files"/></td>
+						<td><img src="${userdata.photo_one }" /></td>
 					</tr>
 					<tr>
 						<td>身份证反面照片：</td>
-						<td><input type="file" name="files"/></td>
+						<td><img src="${userdata.photo_two }" /></td>
 					</tr>
 					<tr>
 						<td>身份证号：</td>
-						<td><input type="text" name="cardid" placeholder="请输入18位身份证号"/></td>
+						<td>${userdata.cardid }</td>
 					</tr>
-					<tr>
-						<td>借款用途：</td>
-						<td><select name="cause">
-						<option value="装修">装修</option>
-						<option value="购物">购物</option>
-						<option value="旅游">旅游</option>
-						<option value="其他">其他</option>
-						</select>
-						</td>
-					</tr>
+					
 					<tr>
 						<td>公司名称：</td>
-						<td><input type="text" name="company"/></td>
+						<td>${userdata.company }</td>
 					</tr>
 					<tr>
 						<td>职位：</td>
-						<td><input type="text" name="position"/></td>
+						<td>${userdata.position }</td>
 					</tr>
 					<tr>
 						<td>月收入：</td>
-						<td><select name="income">
-						<option value="2000以下">2000以下</option>
-						<option value="2000--3500">2000--3500</option>
-						<option value="3500--5000">3500--5000</option>
-						<option value="5000--7000">5000--7000</option>
-						<option value="7000以上">7000以上</option>
-						</select></td>
+						<td>${userdata.income }</td>
 					</tr>
-					<tr>
-						<td>备注：</td>
-						<td><textarea name="remark" ></textarea>
-						<input name="uid" type="hidden" value="${user.uid }"/>
-						 </td>
-					</tr>
-					<tr>
-						<td colspan="1" align="center"><button type="submit" class="btn btn-danger">确认并下一步</button></td>
-					</tr>
+				<tr>
+				<td></td>
+				</tr>	
 				</table>
-				
-			</form>
-			
+				</div>
+				<div class="col-md-8 "><h3>我的联系人</h3></div>
+				<div class="col-md-8 ">
+				<table class="table ">
+		<tr  >
+		<td align="center">联系人名称</td>
+		<td>关系</td>
+		<td>电话号码</td>
+		</tr>
+		<c:forEach items="${list }" var="linkman">
+		<tr>
+		<td>${linkman.linkname }</td>
+		<td>${linkman.relation }</td>
+		<td>${linkman.phone }</td>
+		</tr>
+		</c:forEach>
+				</table>
+				</div>
 		</div>
+		
 		<!-- 登陆模态块 -->
 		<div class="modal" id="modalLogin">
 		  <div class="modal-dialog">
@@ -171,105 +181,95 @@
 </body>
 </html>
 <script>
-	window.onload=function(){
-		var vm=new Vue({
-			el:"#app",
-			data:{
-				json:'',
-				citys:'',
-				zones:''
-			},
-			mounted:function(){
-				this.fillP();
-			},
-			methods:{
-				fillP:function(){
-					this.$http({
-						method:'post',
-						url:'/province/findAll',
-						emulateJSON:true,
-						parames:{ },
-					}).then(function(data){
-						this.json=data.body,
-						this.fillC(0);
-					},function(){
-						console.log("请求处理失败！");
-					});
-				},
-				fillC:function(obj){
-					this.citys=this.json[obj].citys;
-					this.fillZ(0);
-				},
-				fillZ:function(obj){
-					this.zones=this.citys[obj].zones;
-				}
-			}
-		});
-	};
+
 	$(document).ready(function(){
+		 $("#pas").hide();
 		$("#login").click(function(){
-			$("#modalLogin").modal("show")
+			$("#modalLogin").modal("show");
 		});
 		$("#reg").click(function(){
-			$("#modalreg").modal("show")
+			$("#modalreg").modal("show");
 		});
 		$("#close1").click(function(){
-			$("#modalLogin").modal("hide")
+			$("#modalLogin").modal("hide");
 		});
 		$("#close2").click(function(){
-			$("#modalreg").modal("hide")
+			$("#modalreg").modal("hide");
 		});
-	 $("#login11").click(function(){
-		
-         var uname=$("#loginUname").val();
-         var password=$("#loginPassword").val();
-         $.ajax({
-             type:"post",
-             url:"/userLogin/login",
-             data:{"uname":uname,"password":password},
-             success:function(data){
-                 if(data!=null){
-                   
-                	 $("#error").val("登陆成功 ");
-                  }else{
-                     $("#error").val("用户名或密码错误 ");
-                      }
-                 }
-             
-             });
-		});
-	$("#sendcode").click(function(){
-		
-        
-        var phone=$("input[name=phone]").val();
+		$(".a1").click(function(){
+           $("#pas").show(1000);
+			});
+		$("#login11").click(function(){
+			
+	         var uname=$("#loginUname").val();
+	         var password=$("#loginPassword").val();
+	         $.ajax({
+	             type:"post",
+	             url:"/userLogin/login",
+	             data:{"uname":uname,"password":password},
+	             success:function(data){
+	                 if(data!=null){
+	                   alert(data);
+	                	 $("#error").val("登陆成功 ");
+	                  }else{
+		                  alert(1);
+	                     $("#error").val("用户名或密码错误 ");
+	                      }
+	                 },
+	             
+	             });
+			});
+		$("#sendcode").click(function(){
+			
+	        
+	        var phone=$("input[name=phone]").val();
+	        $.ajax({
+	            type:"post",
+	            url:"/userLogin/SmS",
+	            data:{"phone":phone},
+	            success:function(data){
+	                $("#smsmegs").val(data);
+	                }
+	            
+	            });
+			}); 
+		$("#regAjax").click(function(){
+			var uname=$("#regUname").val();
+			var password=$("#regPassword").val();
+			var phone=$("#regPhone").val();
+			var code=$("#regCode").val();
+			 $.ajax({
+	             type:"post",
+	             url:"/userLogin/reg",
+	             data:{"uname":uname,"password":password,"phone":phone,"code":code},
+	             success:function(data){
+	                 if(data!=null){
+	                	 $("#regmge").val(data);
+	           			
+	                  }
+	                 }
+	             
+	             });
+			});
+	  $("#updataPas").click(function(){
+         alert(1);
+          var uid=$("input[name=user]").val();
+	      var password=$("#upas").val();
+        var password1=$("#wpas").val();
         $.ajax({
             type:"post",
-            url:"/userLogin/SmS",
-            data:{"phone":phone},
+            url:"/wallet/update",
+            data:{"uid":uid,"password":password,"password1":password1},
             success:function(data){
-                $("#smsmegs").val(data);
+               if(data!=null){
+                   alert("修改成功 ");
+                   $("#pas").hide();
+                   }else{
+                   alert("密码不正确 ");
+                       }
                 }
-            
             });
-		}); 
-	$("#regAjax").click(function(){
-		var uname=$("#regUname").val();
-		var password=$("#regPassword").val();
-		var phone=$("#regPhone").val();
-		var code=$("#regCode").val();
-		 $.ajax({
-             type:"post",
-             url:"/userLogin/reg",
-             data:{"uname":uname,"password":password,"phone":phone,"code":code},
-             success:function(data){
-                 if(data!=null){
-                	 $("#regmge").val(data);
-           			
-                  }
-                 }
-             
-             });
-		});
+		  });
 	});
 	
 </script>

@@ -29,6 +29,7 @@ public class WalletController {
    @RequestMapping("update")
    public @ResponseBody Wallet updatePas(Integer uid,String password,String password1) {
 	   System.out.println(uid+"登陆密码"+password+"钱包密码"+password1);
+	   
 	   User user = userServiceImpl.findByUid(uid, password);
 	   System.out.println(user);
 	   if(user!=null) {

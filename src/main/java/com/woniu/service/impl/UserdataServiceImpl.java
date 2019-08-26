@@ -32,4 +32,10 @@ public class UserdataServiceImpl implements IUserdataService {
 
 	}
 
+	@Override
+	public Userdata findByUid(Integer uid) {
+	
+		return userdataMapper.findByUid(uid);
+	}
+
 }

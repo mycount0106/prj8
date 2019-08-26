@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>用户钱包</title>
+<title>个人中心</title>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -22,7 +22,7 @@
 					<tr>
 						<td align="center"><span style="line-height: 50px; font-size: 20px";><a href="#">首页</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
-						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">个人中心</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/userdata/findMyCentre?uid=${user.uid }">个人中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/wallet/findOne?uid=${user.uid}">我的钱包</a></span></td>
 						<c:if test="${user!=null }">
 						<td align="center"><span style="line-height: 50px; font-size: 20px">${user.uname }</span></td>

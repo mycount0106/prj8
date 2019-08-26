@@ -6,4 +6,7 @@ public interface IUserdataService {
        public void save(Userdata userdata);
        public Userdata findOne(Integer dataid);
        public void updata(Userdata userdata);
+       public Userdata findByUid(Integer uid);
+    	   
+      
 }

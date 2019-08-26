@@ -1,5 +1,7 @@
 package com.woniu.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,11 @@ public class LinkmanServiceImpl implements ILinkmanService {
 	public void save(Linkman linkman) {
 		linkmanMapper.insert(linkman);
 
+	}
+	@Override
+	public List findByUid(Integer uid) {
+		
+		return linkmanMapper.findByUid(uid);
 	}
 
 }

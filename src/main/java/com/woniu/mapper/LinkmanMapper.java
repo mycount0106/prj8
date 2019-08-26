@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface LinkmanMapper {
+	List findByUid(Integer uid);
     long countByExample(LinkmanExample example);
 
     int deleteByExample(LinkmanExample example);

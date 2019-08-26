@@ -2,23 +2,32 @@ package com.woniu.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.woniu.entity.User;
 import com.woniu.entity.Userdata;
+import com.woniu.service.ILinkmanService;
+import com.woniu.service.IUserService;
 import com.woniu.service.IUserdataService;
 
 @Controller
 @RequestMapping("/userdata")
 public class UserdataController {
     @Resource
+	private ILinkmanService linkmanServiceImpl;
+	@Resource
+	private IUserService userServiceImpl;
+	@Resource
 	private IUserdataService userdataServiceImpl;
 	@RequestMapping("save")
 	public String save(@RequestParam("files") MultipartFile[] files, Userdata userdata,HttpServletRequest req) throws IllegalStateException, IOException {
@@ -56,5 +65,15 @@ public class UserdataController {
 	public String findOne(Integer dataid) {  
 		userdataServiceImpl.findOne(dataid);
 		return null;
+	}
+	@RequestMapping("findMyCentre")
+	public String findMyCentre(Integer uid,Model model) {
+		Userdata userdata = userdataServiceImpl.findByUid(uid);
+		User user = userServiceImpl.findOne(uid);
+		List list = linkmanServiceImpl.findByUid(uid);
+		model.addAttribute("userdata", userdata);
+		model.addAttribute("user", user);
+		model.addAttribute("list", list);
+		return "/user/myCentre";
 	}
 }
