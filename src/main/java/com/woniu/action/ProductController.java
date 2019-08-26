@@ -20,7 +20,7 @@ public class ProductController {
 	@Resource
 	private IProductService productServiceImpl;
 	//增加
-	@PostMapping("/product")
+	@PostMapping("/save")
 	public Message save(Product product) {
 		Message msg = null;
 		try {
