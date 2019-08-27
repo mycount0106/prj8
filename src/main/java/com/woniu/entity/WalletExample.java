@@ -192,63 +192,63 @@ public class WalletExample {
             return (Criteria) this;
         }
 
-        public Criteria andLimitIsNull() {
-            addCriterion("limit is null");
+        public Criteria andCountlimitIsNull() {
+            addCriterion("countlimit is null");
             return (Criteria) this;
         }
 
-        public Criteria andLimitIsNotNull() {
-            addCriterion("limit is not null");
+        public Criteria andCountlimitIsNotNull() {
+            addCriterion("countlimit is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLimitEqualTo(Double value) {
-            addCriterion("limit =", value, "limit");
+        public Criteria andCountlimitEqualTo(Double value) {
+            addCriterion("countlimit =", value, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitNotEqualTo(Double value) {
-            addCriterion("limit <>", value, "limit");
+        public Criteria andCountlimitNotEqualTo(Double value) {
+            addCriterion("countlimit <>", value, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitGreaterThan(Double value) {
-            addCriterion("limit >", value, "limit");
+        public Criteria andCountlimitGreaterThan(Double value) {
+            addCriterion("countlimit >", value, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitGreaterThanOrEqualTo(Double value) {
-            addCriterion("limit >=", value, "limit");
+        public Criteria andCountlimitGreaterThanOrEqualTo(Double value) {
+            addCriterion("countlimit >=", value, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitLessThan(Double value) {
-            addCriterion("limit <", value, "limit");
+        public Criteria andCountlimitLessThan(Double value) {
+            addCriterion("countlimit <", value, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitLessThanOrEqualTo(Double value) {
-            addCriterion("limit <=", value, "limit");
+        public Criteria andCountlimitLessThanOrEqualTo(Double value) {
+            addCriterion("countlimit <=", value, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitIn(List<Double> values) {
-            addCriterion("limit in", values, "limit");
+        public Criteria andCountlimitIn(List<Double> values) {
+            addCriterion("countlimit in", values, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitNotIn(List<Double> values) {
-            addCriterion("limit not in", values, "limit");
+        public Criteria andCountlimitNotIn(List<Double> values) {
+            addCriterion("countlimit not in", values, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitBetween(Double value1, Double value2) {
-            addCriterion("limit between", value1, value2, "limit");
+        public Criteria andCountlimitBetween(Double value1, Double value2) {
+            addCriterion("countlimit between", value1, value2, "countlimit");
             return (Criteria) this;
         }
 
-        public Criteria andLimitNotBetween(Double value1, Double value2) {
-            addCriterion("limit not between", value1, value2, "limit");
+        public Criteria andCountlimitNotBetween(Double value1, Double value2) {
+            addCriterion("countlimit not between", value1, value2, "countlimit");
             return (Criteria) this;
         }
 
