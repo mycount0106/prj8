@@ -78,11 +78,11 @@
 					</tr>
 					<tr>
 						<td>身份证正面照片：</td>
-						<td><img src="${userdata.photo_one }" /></td>
+						<td><img src="${userdata.photoOne }" width="20%"/></td>
 					</tr>
 					<tr>
 						<td>身份证反面照片：</td>
-						<td><img src="${userdata.photo_two }" /></td>
+						<td><img src="${userdata.photoTwo }" width="20%"/></td>
 					</tr>
 					<tr>
 						<td>身份证号：</td>
