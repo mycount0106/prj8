@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import com.woniu.entity.Invest;
+import com.woniu.entity.InvestExample;
+import com.woniu.entity.PageBean;
 import com.woniu.entity.Product;
 import com.woniu.mapper.InvestMapper;
 import com.woniu.service.IInvestService;
@@ -23,7 +26,10 @@ private InvestMapper investMapper;
 	@Override
 	public void del(Integer id) {
 		// TODO Auto-generated method stub
-		investMapper.deleteByPrimaryKey(id);
+		Invest invest = new Invest();
+		invest.setInvertid(id);
+		invest.setStatus(0);
+		investMapper.updateByPrimaryKeySelective(invest);
 	}
 
 	@Override
@@ -38,10 +44,25 @@ private InvestMapper investMapper;
 		return investMapper.selectByPrimaryKey(id);
 	}
 
+
 	@Override
-	public List<Invest> findAll() {
+	public List<Invest> findAll(PageBean pb) {
 		// TODO Auto-generated method stub
-		return investMapper.selectByExample(null);
+			InvestExample ie = new InvestExample();
+			List<Invest> list = investMapper.selectByExample(null,new RowBounds(pb.getOffset(), pb.getLimit()));
+			int count = (int) investMapper.countByExample(ie);
+			pb.setCount(count);
+			return list;
+	}
+
+	@Override
+	public void revoke(Integer id) {
+		// TODO Auto-generated method stub
+		Invest invest = new Invest();
+		invest.setInvertid(id);
+		invest.setStatus(1);
+		investMapper.updateByPrimaryKeySelective(invest);
+		
 	}
 
 }
