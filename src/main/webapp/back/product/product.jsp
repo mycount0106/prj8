@@ -73,7 +73,7 @@
 		         <td>
 		         <button class="btn btn-primary btn-danger" v-on:click="del(item.productid);">del</button>
 		         <button class="btn btn-primary btn-success" v-on:click="refresh(item.productid);">refresh</button>
-		         <button class="btn btn-primary btn-info" v-on:click="editform(item.productid);">edit</button>
+		         <button class="btn btn-primary btn-info" v-on:click="findById(item.productid);">edit</button>
 		         </td>
 		      </tr>
 		   </tbody>
@@ -145,11 +145,23 @@ window.onload = function(){
 		                },function(){
 		                    console.log('请求失败处理');
 		              }); 
-
-		        	 
-			         }
-        },
-    });
+			         },
+			         findById:function(index){
+			        	 this.$http({
+			                	method:'get',
+			                	url:'/api/goedit',
+			                	emulateJSON:false, 
+			                	params:{
+			                		id:index
+			                	},	
+			                }).then(function(){
+			                	this.get();
+			                },function(){
+			                    console.log('请求失败处理');
+			              }); 
+				    },
+      			 },
+   			 });
 $("btn btn-primary btn-lg").click(function(){
 	 $(".form-horizontal").show();
 });

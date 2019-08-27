@@ -9,6 +9,9 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="walletid" jdbcType="INTEGER" property="walletid" />
   </resultMap>
+  <select id="godraw" resultMap="BaseResultMap">
+  	 select drawmoney,money from withdrawal a,wallet b where a.walletid = b.walletid;
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

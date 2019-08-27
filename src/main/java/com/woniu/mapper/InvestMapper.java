@@ -4,6 +4,7 @@ import com.woniu.entity.Invest;
 import com.woniu.entity.InvestExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface InvestMapper {
     long countByExample(InvestExample example);
@@ -16,7 +17,7 @@ public interface InvestMapper {
 
     int insertSelective(Invest record);
 
-    List<Invest> selectByExample(InvestExample example);
+    List<Invest> selectByExample(InvestExample example, RowBounds rowBounds);
 
     Invest selectByPrimaryKey(Integer invertid);
 

@@ -3,6 +3,7 @@ package com.woniu.service;
 import java.util.List;
 
 import com.woniu.entity.Invest;
+import com.woniu.entity.PageBean;
 
 public interface IInvestService {
 	void add(Invest invest);
@@ -13,7 +14,9 @@ public interface IInvestService {
 
 	Invest find(Integer id);
 
-	List<Invest> findAll();
+	List<Invest> findAll(PageBean pb);
+
+	void revoke(Integer id);
 
 
 }

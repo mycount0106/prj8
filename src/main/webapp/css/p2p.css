@@ -1,0 +1,591 @@
+*{
+   margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+}
+
+.line{
+    width: 100%;
+    color: grey;
+    size: 5px;
+}
+.top{
+    width: 100%;
+    height: 80px;
+}
+.top .logo{
+    float: left;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+.top .logo a{
+    display: inline-block;
+    width: 235px;
+    height: 32px;
+    background: url("../images/logo.png") no-repeat 0 0;
+    margin-left: 30px;
+    padding: 50px;
+}
+.content .con{
+    width: 100%;
+    height: 476px;
+}
+.content .con_in {
+   background: url("../images/content.jpg") no-repeat 0 0;
+}
+.content .foo{
+    width: 100%;
+    height: 86px;
+}
+.content .con_in li {
+    float: right;
+    padding: 25px;
+    list-style: none;
+    width: 600px;
+    text-align: center;
+    margin-right:100px ;
+}
+.content .con_notice{
+    width: 100%;
+    height: 38px;
+}
+.content .con_notice .ll{
+     float: left;
+     margin-left: 30px;
+ }
+.content .con_notice .rr{
+    float: right;
+    margin-right: 30px;
+}
+.novice {
+    width: 1080px;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+}
+.novice-exclusive-box{
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+.novice .novice-top {
+    width: 1040px;
+    height: 20px;
+    padding: 0 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.novice .novice-top .no-top-l {
+    width: 700px;
+    height: 20px;
+    float: left;
+}
+.novice .novice-top .no-top-l span {
+    font-size: 18px;
+    line-height: 20px;
+    float: left;
+    color: #333;
+}
+.novice .novice-top .no-top-l em {
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #999;
+}
+.novice-top fn-clear{
+	margin: 0;
+    padding: 0;
+}
+.novice .plan{
+	padding-top: 10px;
+    padding-bottom: 26px;
+    height: 70px;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+    background: #fff;
+}
+.novice .plan .p-rate {
+    width: 216px;
+    text-align: center;
+    font-size: 30px;
+    color: #FF721F;
+}
+.novice .plan .p-rate>div {
+    position: relative;
+    top: -5px;
+}
+
+.novice .plan .p-rate .percent {
+    font-size: 16px;
+}
+.novice .plan .p-rate>.b-text {
+    margin-top: 0;
+    position: relative;
+    top: 0;
+}
+novice .plan .p-month, .novice .plan .p-title {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.novice .plan .p-month {
+    width: 215px;
+    height: 70px;
+}
+.novice .plan>div {
+    float: left;
+}
+.novice .plan .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.novice .plan .b-text {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+}
+.novice .plan .p-month, .novice .plan .p-title {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.novice .plan .p-month {
+    width: 215px;
+    height: 70px;
+}
+.novice .plan>div {
+    float: left;
+}
+
+.novice .plan .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.novice .plan .b-text {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+}
+.novice .plan .p-month, .novice .plan .p-title {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.novice .plan>div {
+    float: left;
+}
+.novice .plan .p-title .p-title-text {
+    color: #333;
+    width: 260px;
+    padding-left: 30px;
+    font-size: 14px;
+    height: 70px;
+    line-height: 70px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+}
+.novice .plan .pt7 {
+    padding-top: 7px;
+}
+.novice .plan .p-join {
+    display: block;
+    width: 110px;
+    height: 32px;
+    text-align: center;
+}
+.novice .plan>div {
+    float: left;
+}
+.novice .plan .p-join a {
+    display: inline-block;
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid #FF721F;
+    color: #FF721F;
+    border-radius: 2px;
+    padding: 0 15px;
+    line-height: 32px;
+    position: relative;
+    top: 8px;
+}
+a, a:link, a:visited, a:hover, a:active {
+    color: #2c66ab;
+}
+a {
+    text-decoration: none;
+}
+
+a {
+    outline: 0;
+}
+ins, a {
+    text-decoration: none;
+}
+.compliance-uplan {
+    width: 1080px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 40px;
+    background: #fff;
+}
+.novice-top {
+    width: 1040px;
+    height: 20px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+.novice-top .no-top-l {
+    width: 700px;
+    height: 20px;
+    float: left;
+}
+.novice-top .no-top-l span {
+    font-size: 18px;
+    line-height: 20px;
+    float: left;
+    color: #333;
+}
+.novice-top .no-top-l .product-period-intro {
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #999;
+}
+.novice-top .no-top-r {
+    width: 100px;
+    height: 20px;
+    float: right;
+}
+.novice-top .no-top-r .tu {
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin-top: 2px;
+    float: right;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.novice-top .no-top-r .zi {
+    width: auto;
+    height: 20px;
+    float: right;
+    line-height: 20px;
+    font-size: 12px;
+    color: #8c8e90;
+    text-decoration: none;
+    padding-right: 5px;
+}
+.index-uplan-box {
+    padding-bottom: 26px;
+    height: 70px;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+    border-bottom: 1px solid #ebebeb;
+}
+.clearfix {
+    zoom: 1;
+}
+.index-uplan-box .p-rate {
+    width: 216px;
+    height: 70px;
+    text-align: center;
+    font-size: 30px;
+    color: #FF721F;
+}
+.index-uplan-box>div {
+    float: left;
+}
+
+.index-uplan-box .p-month, .index-uplan-box .p-title {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.index-uplan-box .p-rate .percent {
+    font-size: 16px;
+}
+.index-uplan-box .p-rate>.b-text {
+    margin-top: 0;
+    position: relative;
+    top: 0;
+}
+.index-uplan-box .p-month {
+    width: 215px;
+    height: 70px;
+}
+.index-uplan-box>div {
+    float: left;
+}
+
+.index-uplan-box .p-month, .index-uplan-box .p-title {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.index-uplan-box .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.index-uplan-box .b-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}
+.index-uplan-box .p-month {
+    width: 215px;
+    height: 70px;
+}
+.index-uplan-box>div {
+    float: left;
+}
+.index-uplan-box .p-title {
+    height: 70px;
+}
+.index-uplan-box .p-month, .index-uplan-box .p-title {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.index-uplan-box>div {
+    float: left;
+}
+.index-uplan-box .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.index-uplan-box .b-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}
+.index-uplan-box .pt7 {
+    padding-top: 7px;
+}
+.index-uplan-box .p-title .p-title-text {
+    color: #333;
+    width: 260px;
+    padding-left: 30px;
+    font-size: 14px;
+    height: 44px;
+    line-height: 70px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+}
+.index-uplan-box .p-join {
+    display: block;
+    width: 110px;
+    height: 32px;
+    text-align: center;
+}
+.index-uplan-box .pt7 {
+    padding-top: 7px;
+}
+.index-uplan-box .p-join {
+    display: block;
+    width: 110px;
+    height: 32px;
+    text-align: center;
+}
+.index-uplan-box>div {
+    float: left;
+}
+.index-uplan-box>div {
+    float: left;
+}
+.index-uplan-box .p-join a {
+    display: inline-block;
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid #FF721F;
+    color: #FF721F;
+    line-height: 30px;
+    border-radius: 2px;
+    padding: 0 15px;
+    position: relative;
+    top: 8px;
+}
+.home-container {
+    width: 1080px;
+    margin: 0 auto;
+}
+.salary-container {
+    background: #fff;
+}
+a, a:link, a:visited, a:hover, a:active {
+    color: #2c66ab;
+}
+.compliance-container .caption {
+    padding: 40px 20px 0;
+}
+.clearfix {
+    zoom: 1;
+}
+.compliance-container .caption .l-title {
+    font-size: 18px;
+    color: #333;
+    float: left;
+    width: 700px;
+}
+.compliance-container .caption .r-more {
+    float: right;
+    cursor: pointer;
+}
+a, a:link, a:visited, a:hover, a:active {
+    color: #2c66ab;
+}
+a {
+    text-decoration: none;
+}
+a {
+    outline: 0;
+}
+.salary-container .plan {
+    padding: 27px 0 32px;
+    height: 63px;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+}
+.clearfix {
+    zoom: 1;
+}
+.invite-friend {
+    position: fixed;
+    bottom: 18px;
+    right: 10px;
+    width: 70px;
+    height: 95px;
+    z-index: 999;
+}
+a {
+    text-decoration: none;
+}
+a {
+    outline: 0;
+}
+.compliance-container .caption .l-title div, .compliance-container .caption .l-title img, .compliance-container .caption .l-title span {
+    display: inline-block;
+}
+
+.compliance-container .caption .l-title div {
+    float: left;
+}
+.compliance-container .caption .l-title span {
+    color: #999;
+    font-size: 14px;
+    padding-left: 10px;
+    line-height: 22px;
+}
+.salary-container .plan .p-rate {
+    width: 216px;
+    text-align: center;
+    font-size: 30px;
+    color: #ff721f;
+}
+.salary-container .plan>div {
+    float: left;
+}
+.salary-container .plan .p-start, .salary-container .plan .p-month, .salary-container .plan .p-day {
+    width: 215px;
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.salary-container .plan>div {
+    float: left;
+}
+.salary-container .plan .p-start, .salary-container .plan .p-month, .salary-container .plan .p-day {
+    width: 215px;
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.salary-container .plan>div {
+    float: left;
+}
+.salary-container .plan .p-start, .salary-container .plan .p-month, .salary-container .plan .p-day {
+    width: 215px;
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+}
+.salary-container .plan>div {
+    float: left;
+}
+.salary-container .plan .p-join {
+    padding-left: 70px;
+    height: 62px;
+    display: block;
+    padding-top: 4px;
+}
+.salary-container .plan>div {
+    float: left;
+}
+.salary-container .plan .p-rate .percent {
+    font-size: 16px;
+}
+.salary-container .plan .p-rate>.b-text {
+    margin-top: 0;
+    position: relative;
+    top: 0;
+}
+.salary-container .plan .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.salary-container .plan .b-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}
+.salary-container .plan .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.salary-container .plan .b-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}
+.salary-container .plan .t-text {
+    font-size: 24px;
+    color: #333;
+}
+.salary-container .plan .b-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}
+.salary-container .plan .p-join a {
+    display: block;
+    cursor: pointer;
+    border: 1px solid #FF721F;
+    color: #FF721F;
+    border-radius: 2px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.salary-container .plan .p-join>.b-text {
+    margin-top: 8px;
+    text-align: center;
+}
+.salary-container .plan .b-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+}

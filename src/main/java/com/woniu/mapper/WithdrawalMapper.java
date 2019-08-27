@@ -4,6 +4,7 @@ import com.woniu.entity.Withdrawal;
 import com.woniu.entity.WithdrawalExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface WithdrawalMapper {
     long countByExample(WithdrawalExample example);
@@ -16,7 +17,7 @@ public interface WithdrawalMapper {
 
     int insertSelective(Withdrawal record);
 
-    List<Withdrawal> selectByExample(WithdrawalExample example);
+    List<Withdrawal> selectByExample(WithdrawalExample example,RowBounds rb);
 
     Withdrawal selectByPrimaryKey(Integer drawid);
 
