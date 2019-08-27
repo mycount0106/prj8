@@ -20,7 +20,7 @@ import com.woniu.service.IInvestService;
 import com.woniu.service.IProductService;
 import com.woniu.service.IWithdrawalService;
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/app")
 public class WithdrawalController {
 	@Resource
 	private IWithdrawalService WithdrawalServiceImpl;

@@ -8,6 +8,7 @@
     <result column="regtime" jdbcType="DATE" property="regtime" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <collection property="wallet" column="uid" select="com.woniu.mapper.WalletMapper.findByUid"></collection>
   </resultMap>
   <select id="findByUid" resultMap="BaseResultMap">
   select * from user where uid=#{uid} and password=#{password}

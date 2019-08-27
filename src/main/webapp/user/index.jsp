@@ -21,7 +21,7 @@
 			<table class="col-md-10">
 				<tr>
 					<td align="center"><span
-						style="line-height: 50px; font-size: 20px";><a href="#">首页</a></span></td>
+						style="line-height: 50px; font-size: 20px";><a href="/user/index.jsp">首页</a></span></td>
 					<td align="center"><span
 						style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
 					<td align="center"><span
@@ -52,13 +52,6 @@
 	<div class="line">
 		<hr>
 	</div>
-	<div class="top">
-		<div class="top_left">
-			<h1 class="logo">
-				<a href="#"></a>
-			</h1>
-		</div>
-	</div>
 	<div class="content">
 		<div class="con_in">
 			<h1 class="con">
@@ -70,6 +63,36 @@
 				<li><a>注册注册人数<span>&nbsp;1&nbsp;2&nbsp;3&nbsp;</span>万
 				</a></li>
 			</ul>
+		</div>
+	</div>
+	<div class="novice">
+		<div class="novice-exclusive-box">
+			<div class="novice-top fn-clear">
+				<div class="no-top-l">
+				<span>借款服务</span>
+				<em>最高24个月还款期限</em>
+				</div>
+			</div>
+			<div class="plan clearfix">
+					<div class="p-rate">
+						"18"<span class="percent">%</span>
+						<div class="b-text">折费后年利率</div>
+					</div>
+					<div class="p-month">
+						<div class="t-text">1-24个月</div>
+						<div class="b-text">借款期限</div>
+					</div>
+					<div class="p-month">
+						<div class="t-text">10,000元</div>
+						<div class="b-text">额度上限</div>
+					</div>
+					<div class="p-title">
+						<div class="p-title-text">随借随还，帮您应急</div>
+					</div>
+					<div class="p-join pt7">
+						<a href="">我要借款</a>
+					</div>
+			</div>
 		</div>
 	</div>
 	<div class="novice">

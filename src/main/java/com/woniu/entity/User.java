@@ -20,8 +20,18 @@ public class User implements Serializable{
     private String phone;
 
     private Integer isdelete;
+    
+    private Wallet wallet;
+    
+    public Wallet getWallet() {
+		return wallet;
+	}
 
-    public Integer getUid() {
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
+	}
+
+	public Integer getUid() {
         return uid;
     }
 
