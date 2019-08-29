@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.woniu.entity.Linkman;
 import com.woniu.entity.User;
 import com.woniu.entity.Userdata;
 import com.woniu.entity.Wallet;
@@ -65,7 +66,10 @@ public class WalletController {
 	   Wallet wallet = walletServiceImpl.findByWid(walletid);
 	   User user = userServiceImpl.findOne(wallet.getUid());
 	   Userdata userdata = userdataServiceImpl.findByUid(user.getUid());
-	   List list = linkmanServiceImpl.findByUid(user.getUid());
+	   List<Linkman> list = linkmanServiceImpl.findByUid(user.getUid());
+	   for (Linkman l : list) {
+		System.out.println(l.getLinkname());
+	}
 	          Map map=new HashMap();
 	          map.put("user", user);
 	          map.put("userdata",userdata);

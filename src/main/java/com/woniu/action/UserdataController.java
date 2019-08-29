@@ -47,7 +47,7 @@ public class UserdataController {
 				userdata.setPhotoOne("/images/"+newName);
 				//System.out.println(newName);
 			}else {
-				userdata.setPhotoTwo("/images"+newName);
+				userdata.setPhotoTwo("/images/"+newName);
 				//System.out.println(newName);
 			}
 		}

@@ -8,7 +8,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
   <select id="findByUid" resultMap="BaseResultMap">
-  select * from linkman where exists(select a.linkid from linkmanuser a where uid=#{uid})
+   select * from linkman where exists(select a.linkid from linkmanuser a where a.uid=#{uid} AND a.linkid=linkman.linkid)
   </select>
   <sql id="Example_Where_Clause">
     <where>

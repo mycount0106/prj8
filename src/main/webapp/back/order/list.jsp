@@ -103,11 +103,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 					<tr>
 						<td>身份证正面照片：</td>
-						<td><img src="" width="20%" id="g"/></td>
+						<td><img  width="20%" id="g"/></td>
 					</tr>
 					<tr>
 						<td>身份证反面照片：</td>
-						<td><img src="" width="20%" id="h"/></td>
+						<td><img  width="20%" id="h"/></td>
 					</tr>
 					<tr>
 						<td>身份证号：</td>
@@ -174,15 +174,16 @@ $(document).ready(function(){
                      $("#d").text(userdata.sex);
                      $("#e").text(userdata.age);
                      $("#f").text(userdata.adress);
-                     $("#g").attr({"src":"userdata.photoOne"});
-                     $("#h").attr({"src":"userdata.photoTwo"});
+                     $("#g").attr({"src":userdata.photoOne});
+                     $("#h").attr({"src":userdata.photoTwo});
                      $("#i").text(userdata.cardid);
                      $("#j").text(userdata.company);
                      $("#k").text(userdata.position);
                      $("#l").text(userdata.income);
+                     $("#tab").empty();
                      $.each(list, function(i,linkman){  
-                    	 $("#tab").empty();
-                 		$("#tab").append("<tr>"+"<td>"+linkman.linkname+"</td>"+"<td>"+linkman.relation+"</td>"+"<td>"+linkman.phone+"</td>"+"</tr>");  
+                    	
+        $("#tab").append("<tr>"+"<td>"+linkman.linkname+"</td>"+"<td>"+linkman.relation+"</td>"+"<td>"+linkman.phone+"</td>"+"</tr>");  
                     	});  
                    $('#win').window('open');  
 
