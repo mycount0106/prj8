@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
+	
+	List findOrder(Integer status);
     long countByExample(OrderExample example);
 
     int deleteByExample(OrderExample example);

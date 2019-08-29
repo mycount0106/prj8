@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface WalletMapper {
+	Wallet findByWid(Integer walletid,String password);
 	void updateByUid(Wallet wallet);
 	 Wallet findByUid(Integer uid);
     long countByExample(WalletExample example);

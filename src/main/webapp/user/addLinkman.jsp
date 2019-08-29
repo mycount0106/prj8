@@ -161,7 +161,7 @@
 	            	 if(data==0){
 		                   alert("登陆成功 ");
 		                   $("#modalLogin").modal("hide");
-		                	
+		                   window.location.reload();
 		                  }else{
 			                  alert("用户名或密码错误 ");
 		                     
@@ -173,13 +173,14 @@
 		$("#sendcode").click(function(){
 			
 	        
-	        var phone=$("input[name=phone]").val();
+	        var phone=$("#regPhone").val();
+              alert(phone);
 	        $.ajax({
 	            type:"post",
 	            url:"/userLogin/SmS",
 	            data:{"phone":phone},
 	            success:function(data){
-	                $("#smsmegs").val(data);
+	                $("#smsmegs").text(data);
 	                }
 	            
 	            });
@@ -194,9 +195,11 @@
 	             url:"/userLogin/reg",
 	             data:{"uname":uname,"password":password,"phone":phone,"code":code},
 	             success:function(data){
-	                 if(data!=null){
-	                	 $("#regmge").val(data);
-	           			
+	                 if(data==0){
+	                	 alert("注册成功！ ");
+	                		$("#modalreg").modal("hide");
+	                  }else{
+	                 alert("验证码错误 ！ ");
 	                  }
 	                 }
 	             

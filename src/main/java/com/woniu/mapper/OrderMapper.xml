@@ -12,6 +12,10 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="moneyonmonth" jdbcType="DOUBLE" property="moneyonmonth" />
   </resultMap>
+ 
+  <select id="findOrder" resultMap="BaseResultMap">
+     select * from `order` where status=#{status}
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -104,7 +108,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniu.entity.Order">
-    insert into order (oid, oname, money, 
+    insert into `order` (oid, oname, money, 
       deadline, rate, otime, 
       walletid, status, moneyonmonth
       )
@@ -114,7 +118,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.woniu.entity.Order">
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="oid != null">
         oid,
@@ -175,13 +179,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.woniu.entity.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+    select count(*) from `order`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update `order`
     <set>
       <if test="record.oid != null">
         oid = #{record.oid,jdbcType=INTEGER},
@@ -216,7 +220,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update `order`
     set oid = #{record.oid,jdbcType=INTEGER},
       oname = #{record.oname,jdbcType=VARCHAR},
       money = #{record.money,jdbcType=DOUBLE},
@@ -231,7 +235,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.woniu.entity.Order">
-    update order
+    update `order`
     <set>
       <if test="oname != null">
         oname = #{oname,jdbcType=VARCHAR},
@@ -261,7 +265,7 @@
     where oid = #{oid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.woniu.entity.Order">
-    update order
+    update `order`
     set oname = #{oname,jdbcType=VARCHAR},
       money = #{money,jdbcType=DOUBLE},
       deadline = #{deadline,jdbcType=INTEGER},

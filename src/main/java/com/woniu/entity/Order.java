@@ -1,9 +1,15 @@
 package com.woniu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
-    private Integer oid;
+public class Order implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer oid;
 
     private String oname;
 
@@ -92,4 +98,12 @@ public class Order {
     public void setMoneyonmonth(Double moneyonmonth) {
         this.moneyonmonth = moneyonmonth;
     }
+
+	@Override
+	public String toString() {
+		return "Order [oid=" + oid + ", oname=" + oname + ", money=" + money + ", deadline=" + deadline + ", rate="
+				+ rate + ", otime=" + otime + ", walletid=" + walletid + ", status=" + status + ", moneyonmonth="
+				+ moneyonmonth + "]";
+	}
+    
 }

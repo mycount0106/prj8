@@ -11,6 +11,9 @@
     <result column="createtime" jdbcType="DATE" property="createtime" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
+  <select id="findByWid" resultMap="BaseResultMap">
+  select * from wallet where walletid=#{walletid} and password=#{password}
+  </select>
   <select id="findByUid" resultMap="BaseResultMap">
   select * from wallet where uid=#{uid}
   </select>

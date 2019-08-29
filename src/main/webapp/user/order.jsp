@@ -48,12 +48,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</nav>
 		<div class="col-md-8 col-md-offset-2">
 			<div class="col-md-8"> <h2>申请借款</h2></div>
-			<form  class="form-horizontal" role="form" action="/userdata/save" method="post" >
+			<form id="form2" class="form-horizontal" role="form" action="/order/save" method="post" >
 				<div class="col-md-8">
 				<table class="table">
 				<tr>
+				<td>我的账户：</td>
+				<td>${user.wallet.account }</td>
+				</tr>
+				<tr>
 				<td>借款金额：</td><td>
-				 <input class="easyui-slider" value="1000"  style="width:400px"  
+				 <input class="easyui-slider" value="1000" name="money"  style="width:400px"  
         data-options="showTip:true,rule:[0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]" id="ss" /> 
 				</td>
 				</tr>
@@ -80,12 +84,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<tr>
 				<td colspan="2" align="center">
-				<input type="checkbox" />我同意借款服务
+				<input type="checkbox" /><input type="hidden"name="walletid" id="pass3" value="${user.wallet.walletid }" />我同意借款服务
 				</td>
 				</tr>
 				<tr>
 				<td colspan="2"  align="center">
-				<button class="btn">提交申请</button>
+				<button class="btn" type="button"id="shenqing">提交申请</button>
 				</td>
 				</tr>
 				</table>
@@ -121,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="modal-content">
 					<div class="modal-header">欢迎注册</div>
 					<div class="modal-body">
-						<form class="form-group" action="#" method="post">
+						<form class="form-group" action="#" method="post" id="form1">
 							<div class="form-group">
 							<label>用户名：</label><input id="regUname" class="form-control"name="uname" type="text" placeholder="请输入用户名：" /><span id="regmge"></span>
 						    </div>
@@ -140,6 +144,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger"id="close2">取消</button>
 						<button class="btn btn-info btn-primary" type="button" id="regAjax">注册</button>
+					</div>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 交易密码模态块 -->
+		<div class="modal" id="transaction">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">请输入交易密码：</div>
+					<div class="modal-body">
+						<form class="form-group" action="#" method="post">
+							<div class="form-group">
+							<label>密码：</label><input id="pass1" class="form-control"name="password" type="password" /><span id="error1"></span>
+						    <input name="walletid" id="pass2" type="hidden"value="${user.wallet.walletid }" />
+						    </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"id="close3">取消</button>
+						<button class="btn btn-info btn-primary" type="button" id="trans">确定</button>
 					</div>
 					</form>
 					</div>
@@ -175,7 +199,35 @@ $(document).ready(function(){
 		       return value + '%';   
 	    }   
 	});  
+	$("#trans").click(function(){
+          var password=$("#pass1").val();
+          var walletid=$("#pass3").val();
+          alert(password);alert(walletid);
+          $.ajax({
+              type:"post",
+              url:"/wallet/findPas",
+              data:{"password":password,"walletid":walletid},
+              success:function(data){
+                    if(data==1){
+                    	$("#transaction").modal("hide");
+                         alert("验证成功，请等待后台审核 ");
+                         $("#form2").form('submit');
+                         window.location.href="/user/index.jsp";
+                        }else{
+                          $("#error1").text("密码错误 ");
+                            }
 
+                  }
+
+              });
+		});
+        $("#shenqing").click(function(){
+              $("#transaction").modal("show")
+            });
+        $("#close3").click(function(){
+          $("#transaction").modal("hide")
+
+            });
 		$("#login").click(function(){
 			$("#modalLogin").modal("show")
 		});
@@ -188,6 +240,7 @@ $(document).ready(function(){
 		$("#close2").click(function(){
 			$("#modalreg").modal("hide")
 		});
+		
 	 $("#login11").click(function(){
 		
          var uname=$("#loginUname").val();
@@ -200,7 +253,7 @@ $(document).ready(function(){
             	 if(data==0){
 	                   alert("登陆成功 ");
 	                   $("#modalLogin").modal("hide");
-	                	
+	                   window.location.reload();
 	                  }else{
 		                  alert("用户名或密码错误 ");
 	                     

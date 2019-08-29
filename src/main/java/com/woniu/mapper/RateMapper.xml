@@ -7,6 +7,9 @@
     <result column="depostitrate" jdbcType="DOUBLE" property="depostitrate" />
     <result column="loanrate" jdbcType="DOUBLE" property="loanrate" />
   </resultMap>
+  <select id="findLoanRate" resultType="Double">
+  select rate.loanrate from rate where deadline=#{deadline}
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

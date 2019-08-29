@@ -238,7 +238,7 @@
             	 if(data==0){
 	                   alert("登陆成功 ");
 	                   $("#modalLogin").modal("hide");
-	                	
+	                   window.location.reload();
 	                  }else{
 		                  alert("用户名或密码错误 ");
 	                     

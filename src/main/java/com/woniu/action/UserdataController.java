@@ -76,4 +76,16 @@ public class UserdataController {
 		model.addAttribute("list", list);
 		return "/user/myCentre";
 	}
+	@RequestMapping("isdata")
+	public String isdata(Integer uid) {
+		Userdata userdata = userdataServiceImpl.findByUid(uid);
+		List list = linkmanServiceImpl.findByUid(uid);
+		if(userdata!=null&&list!=null) {
+			return "redirect:/user/order.jsp";
+		}else if(userdata!=null&&list==null) {
+			return "redirect:/user/addLinkman.jsp";
+		}else {
+			return "redirect:/user/addata.jsp";
+		}
+	}
 }

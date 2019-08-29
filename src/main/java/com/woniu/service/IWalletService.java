@@ -7,4 +7,6 @@ public interface IWalletService {
      public void save(User user);
      public Wallet findOne(Integer uid);
      public void update(Wallet wallet);
+     public Wallet findByWid(Integer walletid,String password);
+     public Wallet findByWid(Integer walletid);
 }

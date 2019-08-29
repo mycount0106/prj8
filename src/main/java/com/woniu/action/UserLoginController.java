@@ -44,7 +44,7 @@ public class UserLoginController {
     		 count = Integer.parseInt(obj.toString());
     		count++;
     	}
-    	if(count>3) {
+    	if(count>300) {
     		return "今日已达上限";
     	}
     	redisTemplate.opsForHash().put("sessionList", phone, count+"");
@@ -53,11 +53,11 @@ public class UserLoginController {
     	System.out.println(number);
     	//String str=SmS.send(phone,number);
     	redisTemplate.opsForValue().set(phone, number);
-    	redisTemplate.expire(phone, 30, TimeUnit.SECONDS);
+    	redisTemplate.expire(phone, 60, TimeUnit.SECONDS);
     	return "已发送短信";
     }
     @RequestMapping("reg")
-    public @ResponseBody String reg(User user,String code) {
+    public @ResponseBody Integer reg(User user,String code) {
     	System.out.println(user.toString());
     	System.out.println(code);
     	String str = redisTemplate.opsForValue().get(user.getPhone());
@@ -65,10 +65,10 @@ public class UserLoginController {
     	redisTemplate.opsForValue().set(user.getPhone(), null);
     	if(str!=null&&user.getPhone()!=null&&str.equals(code)) {
     		userServiceImpl.save(user);
-    		return "注册成功";
+    		return 0;
     	}else {
     		
-    		return "注册失败";
+    		return 1;
     	}
     	
     }

@@ -90,7 +90,7 @@
 						<div class="p-title-text">随借随还，帮您应急</div>
 					</div>
 					<div class="p-join pt7">
-						<a href="">我要借款</a>
+						<a href="/userdata/isdata?uid=${user.uid }">我要借款</a>
 					</div>
 			</div>
 		</div>
@@ -293,12 +293,13 @@ $(document).ready(function(){
             url:"/userLogin/login",
             data:{"uname":uname,"password":password},
             success:function(data){
-                if(data!=null){
-                  alert(data);
-               	 $("#error").val("登陆成功 ");
+                if(data==0){
+                   alert("登陆成功 ");
+                	$("#modalLogin").modal("hide");
+                	 window.location.reload();
                  }else{
-	                  alert(1);
-                    $("#error").val("用户名或密码错误 ");
+	                 
+                    $("#error").text("用户名或密码错误 ");
                      }
                 },
             

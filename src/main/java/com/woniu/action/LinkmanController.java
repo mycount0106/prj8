@@ -58,6 +58,6 @@ public class LinkmanController {
     	 System.out.println(link2);
     	 User user = userServiceImpl.findOne(uid);
     	 walletServiceImpl.save(user);
-    	 return null;
+    	 return "redirect:/user/index.jsp";
      }
 }

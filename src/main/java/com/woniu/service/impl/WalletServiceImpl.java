@@ -34,5 +34,15 @@ public class WalletServiceImpl implements IWalletService {
 		
 		walletMapper.updateByUid(wallet);
 	}
+	@Override
+	public Wallet findByWid(Integer walletid, String password) {
+		
+		return walletMapper.findByWid(walletid, password);
+	}
+	@Override
+	public Wallet findByWid(Integer walletid) {
+		
+		return walletMapper.selectByPrimaryKey(walletid);
+	}
 
 }
