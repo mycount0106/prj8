@@ -4,8 +4,10 @@ import com.woniu.entity.User;
 import com.woniu.entity.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface UserMapper {
+	void isdelete(Integer uid,Integer isdelete);
 	User findByUid(Integer uid,String password);
 	User Login(User user);
     long countByExample(UserExample example);
@@ -19,6 +21,7 @@ public interface UserMapper {
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
+    List<User> selectByExample(UserExample example,RowBounds rb);
 
     User selectByPrimaryKey(Integer uid);
 

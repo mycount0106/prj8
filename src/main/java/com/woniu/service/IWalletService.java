@@ -9,4 +9,5 @@ public interface IWalletService {
      public void update(Wallet wallet);
      public Wallet findByWid(Integer walletid,String password);
      public Wallet findByWid(Integer walletid);
+     public void updatelimit(Wallet wallet);
 }

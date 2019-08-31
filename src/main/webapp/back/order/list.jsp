@@ -18,18 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script type="text/javascript" src="<%=basePath%>js/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script >
-      $(document).ready(function(){
-        $(".del").click(function(){
-           var  a= window.confirm("确定删除吗 ");
-            if(a){
-                  location.href="/inform/delete?informid="+$(this).val();
-                }
-            });
 
-          });
-
-</script>
 </head>
 <body>
 <h2>借款列表</h2>

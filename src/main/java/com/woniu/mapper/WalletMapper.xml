@@ -20,6 +20,9 @@
   <update id="updateByUid" parameterType="com.woniu.entity.Wallet">
    update wallet set password=#{password} where uid=#{uid}
   </update>
+  <update id="updatelimit" parameterType="com.woniu.entity.Wallet">
+   update wallet set countlimit=#{countlimit} where uid=#{uid}
+  </update>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

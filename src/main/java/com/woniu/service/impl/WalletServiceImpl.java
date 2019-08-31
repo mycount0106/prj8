@@ -44,5 +44,10 @@ public class WalletServiceImpl implements IWalletService {
 		
 		return walletMapper.selectByPrimaryKey(walletid);
 	}
+	@Override
+	public void updatelimit(Wallet wallet) {
+		walletMapper.updatelimit(wallet);
+		
+	}
 
 }

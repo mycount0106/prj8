@@ -77,4 +77,10 @@ public class WalletController {
 	          return map;
 	          
    }
+   @RequestMapping("updatelimit")
+   public @ResponseBody Wallet updatelimit(Wallet wallet) {
+	  System.out.println("正在修改额度。。。。");
+	   walletServiceImpl.updatelimit(wallet);
+	   return wallet;
+   }
 }

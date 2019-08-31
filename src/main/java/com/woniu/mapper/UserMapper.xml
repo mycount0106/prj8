@@ -10,6 +10,9 @@
     <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
     <collection property="wallet" column="uid" select="com.woniu.mapper.WalletMapper.findByUid"></collection>
   </resultMap>
+  <update id="isdelete" parameterType="Integer">
+  update user set isdelete=#{isdelete} where uid=#{uid}
+  </update>
   <select id="findByUid" resultMap="BaseResultMap">
   select * from user where uid=#{uid} and password=#{password}
   </select>

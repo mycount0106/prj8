@@ -1,5 +1,8 @@
 package com.woniu.action;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -8,14 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.woniu.entity.PageBean;
 import com.woniu.entity.User;
 import com.woniu.service.IUserService;
 
 @Controller
-@RequestMapping("userLogin")
+@RequestMapping("/userLogin")
 public class UserLoginController {
     @Resource
 	private RedisTemplate<String, String> redisTemplate;
@@ -77,5 +82,24 @@ public class UserLoginController {
     	System.out.println("退出登陆");
     	req.getSession().removeValue("user");
     	return "退出成功";
+    }
+    @RequestMapping("findAll")
+    public  String findAll(User user,PageBean pageBean,Model model) {
+    	System.out.println("正在查询所有用户。。。");
+    	
+    	List<User> list = userServiceImpl.findAll(user, pageBean);
+    	model.addAttribute("list", list);
+    	model.addAttribute("pb", pageBean);
+    	model.addAttribute("user", user);
+    	return "/back/user/list";
+    }
+    @RequestMapping("isdelete")
+    public @ResponseBody void isdelete(Integer uid) {
+    	User user = userServiceImpl.findOne(uid);
+    	if(user!=null&&user.getIsdelete()==0) {
+    		userServiceImpl.isdelete(uid, 1);
+    	}else if(user!=null&&user.getIsdelete()==1){
+    		userServiceImpl.isdelete(uid, 0);
+    	}
     }
 }
