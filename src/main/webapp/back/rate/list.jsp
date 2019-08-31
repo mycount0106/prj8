@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>用户管理</title>
+<title>利率管理</title>
 <script type="text/javascript" src="<%=basePath%>js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/jquery.ztree.core-3.5.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>js/easyui/themes/default/easyui.css">
@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 <body>
-<h2>用户列表</h2>
+<h2>利率列表</h2>
 
  
   <table width="800px" border="1px">

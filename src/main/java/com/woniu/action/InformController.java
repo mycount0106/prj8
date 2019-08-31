@@ -47,4 +47,10 @@ public class InformController {
 		model.addAttribute("informs", informs);
 		return "/back/inform/list";
 	}
+	@RequestMapping("findAllByHelp")
+	public String findAllByHelp(Model model) {
+		List informs = informServiceImpl.findAll();
+		model.addAttribute("informs", informs);
+		return "/user/helpcenter";
+	}
 }

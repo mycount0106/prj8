@@ -21,7 +21,7 @@
 				<table class="col-md-10">
 					<tr>
 						<td align="center"><span style="line-height: 50px; font-size: 20px";><a href="/user/index.jsp">首页</a></span></td>
-						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="#">帮助中心</a></span></td>
+						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/inform/findAllByHelp">帮助中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/userdata/findMyCentre?uid=${user.uid }">个人中心</a></span></td>
 						<td align="center"><span style="line-height: 50px; font-size: 20px"><a href="/wallet/findOne?uid=${user.uid}">我的钱包</a></span></td>
 						<c:if test="${user!=null }">

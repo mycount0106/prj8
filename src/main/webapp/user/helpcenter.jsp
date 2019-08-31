@@ -1,26 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>用户申请借款</title>
+<title>帮助中心</title>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../css/bootstrap.min.css" />
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<%=basePath%>js/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="<%=basePath%>js/easyui/themes/icon.css">
-
-<script type="text/javascript" src="<%=basePath%>js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/easyui/locale/easyui-lang-zh_CN.js"></script>
-
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -47,55 +37,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</nav>
 		<div class="col-md-8 col-md-offset-2">
-			<div class="col-md-8"> <h2>申请借款</h2></div>
-			<form id="form2" class="form-horizontal" role="form" action="/order/save" method="post" >
-				<div class="col-md-8">
-				<table class="table">
-				<tr>
-				<td>我的账户：</td>
-				<td>${user.wallet.account }</td>
-				</tr>
-				<tr>
-				<td>借款金额：</td><td>
-				 <input class="easyui-slider" value="1000" name="money"  style="width:400px"  
-        data-options="showTip:true,rule:[0,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]" id="ss" /> 
-				</td>
-				</tr>
-				<tr>
-				<td>借款期限：</td>
-				<td> <select name="deadline">
-				<option value="3">3个月</option>
-				<option value="6">6个月</option>
-				<option value="9">9个月</option>
-				<option value="12">12个月</option>
-				<option value="15">15个月</option>
-				<option value="18">18个月</option>
-				<option value="21">21个月</option>
-				<option value="24">24个月</option>
-				</select> </td>
-				</tr>
-				<tr>
-				<td>每月还款额：</td>
-				<td><input name="moneyOnmonth" readonly="readonly"/></td>
-				</tr>
-				<tr>
-				<td>还款总额：</td>
-				<td><input  readonly="readonly" name="countMoney" /></td>
-				</tr>
-				<tr>
-				<td colspan="2" align="center">
-				<input type="checkbox" /><input type="hidden"name="walletid" id="pass3" value="${user.wallet.walletid }" />我同意借款服务
-				</td>
-				</tr>
-				<tr>
-				<td colspan="2"  align="center">
-				<button class="btn" type="button"id="shenqing">提交申请</button>
-				</td>
-				</tr>
-				</table>
-				</div>
-			</form>
-			
+			<h2>公告列表</h2>
+  <table class="table">
+  <tr>
+  <td class="col-md-1">公告ID</td>
+  <td>标题</td>
+  <td>内容</td>
+  </tr>
+  <c:forEach items="${informs }" var="inform" >
+  <tr>
+  <td>${inform.informid }</td>
+  <td>${inform.title }</td>
+  <td>${inform.content }</td>
+  </tr>
+  </c:forEach>
+  </table>
 		</div>
 		<!-- 登陆模态块 -->
 		<div class="modal" id="modalLogin">
@@ -125,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="modal-content">
 					<div class="modal-header">欢迎注册</div>
 					<div class="modal-body">
-						<form class="form-group" action="#" method="post" id="form1">
+						<form class="form-group" action="#" method="post">
 							<div class="form-group">
 							<label>用户名：</label><input id="regUname" class="form-control"name="uname" type="text" placeholder="请输入用户名：" /><span id="regmge"></span>
 						    </div>
@@ -150,84 +106,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
-		<!-- 交易密码模态块 -->
-		<div class="modal" id="transaction">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">请输入交易密码：</div>
-					<div class="modal-body">
-						<form class="form-group" action="#" method="post">
-							<div class="form-group">
-							<label>密码：</label><input id="pass1" class="form-control"name="password" type="password" /><span id="error1"></span>
-						    <input name="walletid" id="pass2" type="hidden"value="${user.wallet.walletid }" />
-						    </div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger"id="close3">取消</button>
-						<button class="btn btn-info btn-primary" type="button" id="trans">确定</button>
-					</div>
-					</form>
-					</div>
-				</div>
-			</div>
-		</div>
 </body>
 </html>
 <script>
-
-$(document).ready(function(){
-	// ［贷款本金  ×  月利率  ×  （  1  ＋月利率）＾还款月数］  ÷  ［（  1  ＋月利率）＾还款月数－  1  ］  ；parseInt(money)*0.06*
-	$("select[name='deadline']").change(function(){
-	   var money=$("#ss").val();
-	   //alert(money);
-       var deadline=$("select[name='deadline']").val();
-       //alert(deadline);
-       let a=parseInt(money)*0.06*(Math.pow((1+0.06),parseInt(deadline)));
-       let b=parseFloat(Math.pow((1+0.06),parseInt(deadline))-1);
-       alert(parseInt(a));alert(b);
-       $("input[name='moneyOnmonth']").val(parseFloat(a/b).toFixed(2));
-       $("input[name='countMoney']").val(parseFloat(a/b*parseInt(deadline)).toFixed(2));
-		});
-
-	$('#ss').slider({   
-	    mode: 'h',
-	    min:0,
-	    max:10000,
-	    step:1000,  
-	    onSlideEnd: function(value){   
-             //alert(value);
-             $("#ss").val(value);
-		       return value + '%';   
-	    }   
-	});  
-	$("#trans").click(function(){
-          var password=$("#pass1").val();
-          var walletid=$("#pass3").val();
-          alert(password);alert(walletid);
-          $.ajax({
-              type:"post",
-              url:"/wallet/findPas",
-              data:{"password":password,"walletid":walletid},
-              success:function(data){
-                    if(data==1){
-                    	$("#transaction").modal("hide");
-                         alert("验证成功，请等待后台审核 ");
-                         $("#form2").form('submit');
-                         window.location.href="/user/index.jsp";
-                        }else{
-                          $("#error1").text("密码错误 ");
-                            }
-
-                  }
-
-              });
-		});
-        $("#shenqing").click(function(){
-              $("#transaction").modal("show")
-            });
-        $("#close3").click(function(){
-          $("#transaction").modal("hide")
-
-            });
+	
+	$(document).ready(function(){
 		$("#login").click(function(){
 			$("#modalLogin").modal("show")
 		});
@@ -240,7 +123,6 @@ $(document).ready(function(){
 		$("#close2").click(function(){
 			$("#modalreg").modal("hide")
 		});
-		
 	 $("#login11").click(function(){
 		
          var uname=$("#loginUname").val();
@@ -305,8 +187,6 @@ $(document).ready(function(){
              });
 
 		});
-	
-	
 	});
 	
 </script>
